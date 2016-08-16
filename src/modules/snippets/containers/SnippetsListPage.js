@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import * as actions from '../snippetActions';
+import actions from '../snippetsActions';
+import goto from '../../../utils/goto';
 import SnippetDetail from '../components/SnippetDetail';
 
 
@@ -13,6 +14,10 @@ class SnippetsListPage extends React.Component {
 
   testApi() {
     this.props.actions.fetch();
+  }
+
+  gotoCreatePage() {
+    goto.route('/snippets/new');
   }
 
   /*=============================================
@@ -27,11 +32,16 @@ class SnippetsListPage extends React.Component {
         <hr/>
 
         <p>
-          <button
+          <span
             className="btn btn-primary"
             onClick={() => this.testApi()}>
-          Load Snippets
-          </button>
+            Load Snippets
+          </span>&nbsp;
+          <span
+            className="btn btn-success"
+            onClick={() => this.gotoCreatePage()}>
+            Add a New Snippet
+          </span>
         </p>
 
         {this.props.snippets.map(snippet =>

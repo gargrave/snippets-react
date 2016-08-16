@@ -1,7 +1,18 @@
+// regex for URLs
+const RE_URL = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 // regex for email addresses
 const RE_EMAIL = /^\S+@\S+\.\S+$/;
 // regex for Twitter handles
 const RE_TWITTER = /^@[\S]{1,15}$/;
+
+/**
+ * Returns whether the supplied value the basic format of a valid URL
+ * @param value The URL to check
+ * @returns {boolean} Whether the supplied URL validates
+ */
+function isValidUrl(value) {
+  return RE_URL.test(value);
+}
 
 /**
  * Returns whether the supplied email matches the basic format of a valid email address
@@ -44,7 +55,7 @@ function isValidTwitter(value) {
  *        (Note that the function will return as soon as any rule is not met.)
  */
 function validate(_value, rules) {
-  const value = _value.trim();
+  const value =_value ? _value.trim() : '';
   const isRequired = rules.required;
   const isBlank = !value.length || value === null || value === undefined;
 
@@ -87,6 +98,16 @@ function validate(_value, rules) {
     (isRequired || (!isRequired && !isBlank));
   if (shouldCheckFormat) {
     const format = rules.format.trim().toLowerCase();
+
+    // url
+    if (format === 'url') {
+      if (!isValidUrl(value)) {
+        return {
+          valid: false,
+          error: 'Must be a valid url.'
+        };
+      }
+    }
 
     // email address
     if (format === 'email') {

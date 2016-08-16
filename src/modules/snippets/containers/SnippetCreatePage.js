@@ -3,18 +3,18 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
 
-import * as actions from '../bookmarksActions';
+import actions from '../snippetsActions';
 import validate from '../../../utils/validate';
 import goto from '../../../utils/goto';
-import BookmarkForm from '../components/BookmarkForm';
+import SnippetForm from '../components/SnippetForm';
 
 
-class BookmarkCreatePage extends React.Component {
+class SnippetsCreatePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      bookmark: {},
+      snippet: {},
       working: false,
       errors: {},
       apiError: ''
@@ -25,6 +25,10 @@ class BookmarkCreatePage extends React.Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
+  redirectToListPage() {
+    goto.route('/snippets');
+  }
+
   /*=============================================
    = event handlers
    =============================================*/
@@ -32,9 +36,9 @@ class BookmarkCreatePage extends React.Component {
     event.preventDefault();
 
     let propKey = event.target.name;
-    let bookmark = this.state.bookmark;
-    bookmark[propKey] = event.target.value;
-    this.setState({ bookmark });
+    let snippet = this.state.snippet;
+    snippet[propKey] = event.target.value;
+    this.setState({ snippet });
   }
 
   onSubmit(event) {
@@ -42,17 +46,17 @@ class BookmarkCreatePage extends React.Component {
 
     if (this.isValid()) {
       this.setState({ working: true });
-      this.props.actions.create(this.state.bookmark)
+      this.props.actions.create(this.state.snippet)
         .then(res => {
           this.setState({ working: false });
-          toastr.success('Bookmark created', 'Success');
+          toastr.success('Snippet created', 'Success');
           this.redirectToListPage();
         }, err => {
           this.setState({
             working: false,
             apiError: err.message
           });
-          toastr.error('Error creating bookmark', 'Error');
+          toastr.error('Error creating snippet', 'Error');
         });
     }
   }
@@ -62,14 +66,47 @@ class BookmarkCreatePage extends React.Component {
     this.redirectToListPage();
   }
 
+  /*=============================================
+   = validation
+   =============================================*/
+  isValid() {
+    let valid = true;
+    let snippet = this.state.snippet;
+    let errors = {};
+
+    // validate title
+    let titleParams = { minLength: 3 };
+    let titleVal = validate(snippet.title, titleParams);
+    if (!titleVal.valid) {
+      errors.title = titleVal.error;
+      valid = false;
+    }
+
+    // validate url
+    let urlParams = { required: true, format: 'url' };
+    let urlVal = validate(snippet.url, urlParams);
+    if (!urlVal.valid) {
+      errors.url = urlVal.error;
+      valid = false;
+    }
+
+    this.setState({ errors });
+    return valid;
+  }
+
   render() {
     return (
       <div>
-        <BookmarkForm
-          bookmark={this.state.bookmark}
+        <h2>
+          Create a Snippet
+        </h2>
+        <hr/>
+
+        <SnippetForm
+          snippet={this.state.snippet}
           working={this.state.working}
           errors={this.state.errors}
-          bookmarkIsDirty={true}
+          snippetIsDirty={true}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           onCancel={this.onCancel}
@@ -79,7 +116,7 @@ class BookmarkCreatePage extends React.Component {
   }
 }
 
-BookmarkCreatePage.propTypes = {
+SnippetsCreatePage.propTypes = {
   actions: PropTypes.object.isRequired,
 };
 
@@ -94,4 +131,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookmarkCreatePage);
+export default connect(mapStateToProps, mapDispatchToProps)(SnippetsCreatePage);

@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App';
 
 import SnippetsListPage from './modules/snippets/containers/SnippetsListPage';
+import SnippetCreatePage from './modules/snippets/containers/SnippetCreatePage';
 
 import HomePage from './modules/common/containers/HomePage';
 import AboutPage from './modules/common/containers/AboutPage.js';
@@ -15,6 +16,7 @@ export default (
     <IndexRoute component={SnippetsListPage}/>
 
     <Route path="snippets" component={SnippetsListPage}/>
+    <Route path="snippets/new" component={SnippetCreatePage}/>
 
     <Route path="about" component={AboutPage}/>
     <Route path="*" component={NotFoundPage}/>

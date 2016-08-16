@@ -8,6 +8,9 @@ export default function snippetsReducer(state = initialState.snippets, action) {
     case types.FETCH_SNIPPETS_SUCCESS:
       return action.snippets;
 
+    case types.CREATE_SNIPPET_SUCCESS:
+      return [...state, action.snippet];
+
     case types.LOGOUT_SUCCESS:
       return [];
 

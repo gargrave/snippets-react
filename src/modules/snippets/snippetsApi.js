@@ -17,5 +17,19 @@ export default {
           }
         });
     });
+  },
+
+  createSnippet(data) {
+    return new Promise((resolve, reject) => {
+      request.post(API_ROOT + '.json')
+        .send(data)
+        .end((err, res) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(res.body);
+          }
+        });
+    });
   }
 };

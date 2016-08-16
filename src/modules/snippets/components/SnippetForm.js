@@ -4,23 +4,30 @@ import SubmitCancelBtnGroup from '../../common/components/SubmitCancelBtnGroup';
 import TextInput from '../../common/components/TextInput';
 
 
-const BookmarkForm = ({
-  bookmark, working, errors, bookmarkIsDirty,
+const SnippetForm = ({
+  snippet, working, errors, snippetIsDirty,
   onChange, onSubmit, onCancel}) => {
   return (
     <form>
       <TextInput
-        label="Bookmark Name"
-        name="name"
-        value={bookmark.name}
-        placeholder="Bookmark Name"
+        label="Title"
+        name="title"
+        placeholder="Title (Optional)"
         onChange={onChange}
-        error={errors.name}
-        />
+        error={errors.title}
+      />
+
+      <TextInput
+        label="URL"
+        name="url"
+        placeholder="URL"
+        onChange={onChange}
+        error={errors.url}
+      />
 
       <SubmitCancelBtnGroup
         working={working}
-        disableSubmit={!bookmarkIsDirty}
+        disableSubmit={!snippetIsDirty}
         onSubmit={onSubmit}
         onCancelClick={onCancel}
       />
@@ -28,14 +35,14 @@ const BookmarkForm = ({
   );
 };
 
-BookmarkForm.propTypes = {
-  bookmark: PropTypes.object.isRequired,
+SnippetForm.propTypes = {
+  snippet: PropTypes.object.isRequired,
   working: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
-  bookmarkIsDirty: PropTypes.bool.isRequired,
+  snippetIsDirty: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired
 };
 
-export default BookmarkForm;
+export default SnippetForm;
