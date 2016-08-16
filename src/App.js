@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Link, IndexLink } from 'react-router';
 import bootstrap from 'bootstrap';
 
+import FirebaseContainer from './modules/firebase/FirebaseContainer';
 import Navbar from './modules/layout/components/Navbar';
 
 
@@ -11,7 +12,10 @@ class App extends React.Component {
     return (
       <div>
 
-        <Navbar />
+        <FirebaseContainer />
+        <Navbar
+          user={this.props.user}
+        />
 
         <div className="container">
           <main className="col-md-8">
@@ -25,8 +29,14 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  children: PropTypes.element,
+  user: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state, ownProps) {
   return {
+    user: state.user
   };
 }
 

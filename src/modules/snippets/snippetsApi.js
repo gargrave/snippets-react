@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-import {fbToArray} from '../../utils/firebaseUtils';
+import {fbToArray} from '../firebase/firebaseUtils';
 
 
 const API_ROOT = 'https://snippets-dev-c5838.firebaseio.com/snippets';

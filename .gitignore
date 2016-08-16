@@ -37,3 +37,10 @@ dist
 
 # Mac files
 .DS_Store
+
+# etc folder, just ignore everything here
+etc
+
+# firebase config files
+database.rules.json
+.firebaserc

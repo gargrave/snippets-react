@@ -32,6 +32,7 @@ class SnippetsListPage extends React.Component {
         <hr/>
 
         <p>
+          {/*
           <span
             className="btn btn-primary"
             onClick={() => this.testApi()}>
@@ -42,6 +43,7 @@ class SnippetsListPage extends React.Component {
             onClick={() => this.gotoCreatePage()}>
             Add a New Snippet
           </span>
+          */}
         </p>
 
         {this.props.snippets.map(snippet =>

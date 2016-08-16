@@ -1,6 +1,6 @@
 import * as types from '../../constants/actionTypes';
 
-import {fbToArray} from '../../utils/firebaseUtils';
+import {fbToArray} from '../firebase/firebaseUtils';
 import api from './snippetsApi';
 
 

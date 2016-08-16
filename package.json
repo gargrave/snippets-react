@@ -29,6 +29,7 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "3.3.7",
+    "firebase": "3.3.0",
     "jquery": "2.2.4",
     "lodash": "4.15.0",
     "moment": "2.14.1",
