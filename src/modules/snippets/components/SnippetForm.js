@@ -26,6 +26,7 @@ const SnippetForm = ({
         onChange={onChange}
         error={errors.url}
       />
+      <hr/>
 
       <SubmitCancelBtnGroup
         working={working}

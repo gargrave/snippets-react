@@ -8,7 +8,6 @@ import NotFoundPage from './modules/common/containers/NotFoundPage.js';
 
 import SnippetsListPage from './modules/snippets/containers/SnippetsListPage';
 import SnippetCreatePage from './modules/snippets/containers/SnippetCreatePage';
-import SnippetDetailPage from './modules/snippets/containers/SnippetDetailPage';
 import SnippetEditPage from './modules/snippets/containers/SnippetEditPage';
 
 import AccountPage from './modules/account/containers/AccountPage';
@@ -22,8 +21,7 @@ export default (
 
     <Route path="snippets" component={SnippetsListPage}/>
     <Route path="snippets/new" component={SnippetCreatePage}/>
-    <Route path="snippets/:id" component={SnippetDetailPage}/>
-    <Route path="snippets/:id/edit" component={SnippetEditPage}/>
+    <Route path="snippets/:id" component={SnippetEditPage}/>
 
     <Route path="account" component={AccountPage}/>
     <Route path="account/login" component={LoginPage}/>

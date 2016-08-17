@@ -35,34 +35,18 @@ class SnippetEditPage extends React.Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
+  componentWillMount() {
+    // if we have an invalid snippet id, redirect back to list page
+    if (!this.props.snippet.id) {
+      this.gotoListPage();
+    }
+  }
+
+  /*=============================================
+   = routing methods
+   =============================================*/
   gotoListPage() {
     goto.route('/snippets');
-  }
-
-  gotoDetailsPage() {
-    let id = this.state.snippet.id;
-    goto.route(`/snippets/${id}`);
-  }
-
-  /** Checks if the snippet currently has unsaved edits */
-  checkIfsnippetIsDirty() {
-    let snippetIsDirty = false;
-
-    // compare snippet 'title' properties
-    let titleOrig = this.state.snippetCopy.title;
-    let titleNew = this.state.snippet.title.trim();
-    if (titleNew && titleNew !== titleOrig) {
-      snippetIsDirty = true;
-    }
-
-    // compare platforms
-    let urlOrig = this.state.snippetCopy.url;
-    let urlNew = this.state.snippet.url;
-    if (urlOrig !== urlNew) {
-      snippetIsDirty = true;
-    }
-
-    this.setState({ snippetIsDirty });
   }
 
   /*=============================================
@@ -119,14 +103,57 @@ class SnippetEditPage extends React.Component {
     }
   }
 
+  onArchiveClick() {
+    toastr.warning('onArchiveClick()', 'Not implemented');
+  }
+
+  onDeleteClick() {
+    if (!this.state.working && confirm('Delete this snippet?')) {
+      this.setState({ working: true });
+      this.props.actions.remove(this.props.snippet)
+        .then(() => {
+          this.setState({ working: false });
+          toastr.success('Snippet deleted', 'Success');
+          this.gotoListPage();
+        }, err => {
+          this.setState({
+            working: false,
+            apiError: err.message
+          });
+          toastr.error('Error deleting snippet', 'Error');
+        });
+    }
+  }
+
   onCancel(event) {
     event.preventDefault();
-    this.gotoDetailsPage();
+    this.gotoListPage();
   }
 
   /*=============================================
    = validation
    =============================================*/
+  /** Checks if the snippet currently has unsaved edits */
+  checkIfsnippetIsDirty() {
+    let snippetIsDirty = false;
+
+    // compare snippet 'title' properties
+    let titleOrig = this.state.snippetCopy.title;
+    let titleNew = this.state.snippet.title.trim();
+    if (titleNew && titleNew !== titleOrig) {
+      snippetIsDirty = true;
+    }
+
+    // compare platforms
+    let urlOrig = this.state.snippetCopy.url;
+    let urlNew = this.state.snippet.url;
+    if (urlOrig !== urlNew) {
+      snippetIsDirty = true;
+    }
+
+    this.setState({ snippetIsDirty });
+  }
+
   isValid() {
     let valid = true;
     let snippet = this.state.snippet;
@@ -152,29 +179,61 @@ class SnippetEditPage extends React.Component {
     return valid;
   }
 
+  /*=============================================
+   = render
+   =============================================*/
   render() {
-    let {apiError} = this.state;
+    let {snippet, apiError} = this.state;
     return (
       <div>
-        <h3>Edit Snippet: {this.props.snippet.title}</h3>
+        <h3>Snippet Detail</h3>
         <hr/>
 
         {apiError &&
           <div className="alert alert-danger">Error: {apiError}</div>
         }
 
-        <SnippetForm
-          snippet={this.state.snippet}
-          working={this.state.working}
-          errors={this.state.errors}
-          snippetIsDirty={this.state.snippetIsDirty}
-          onChange={this.onChange}
-          onCheckChange={this.onCheckChange}
-          onSubmit={this.onSubmit}
-          onCancel={this.onCancel}
-          onAddDate={this.onAddDate}
-          onRemoveDate={this.onRemoveDate}
-        />
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h4 className="panel-title">
+              {this.props.snippet.title}
+            </h4>
+          </div>
+
+          <div className="panel-body">
+            <SnippetForm
+              snippet={snippet}
+              working={this.state.working}
+              errors={this.state.errors}
+              snippetIsDirty={this.state.snippetIsDirty}
+              onChange={this.onChange}
+              onCheckChange={this.onCheckChange}
+              onSubmit={this.onSubmit}
+              onCancel={this.onCancel}
+              onAddDate={this.onAddDate}
+              onRemoveDate={this.onRemoveDate}
+            />
+            <hr/>
+
+            <div className="btn-group btn-group-justified">
+              <span
+                type="button"
+                className="btn btn-info"
+                aria-label="Left Align"
+                onClick={() => this.onArchiveClick()}>
+                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </span>
+              <span
+                type="button"
+                className="btn btn-danger"
+                aria-label="Left Align"
+                onClick={() => this.onDeleteClick()}>
+                <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </span>
+            </div>
+
+          </div>
+        </div>
         <br/>
       </div>
     );

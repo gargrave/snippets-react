@@ -6,17 +6,17 @@ class SnippetCard extends Component {
     return (
       <div className="panel panel-default">
 
-      <div className="panel-heading">
-        <h4 className="panel-title">
-          {snippet.title}
-        </h4>
-      </div>
+        <div className="panel-heading">
+          <h4 className="panel-title">
+            {snippet.title}
+          </h4>
+        </div>
 
-      <div className="panel-body">
-        <a href={snippet.url} className="text-muted" target="_blank">{snippet.url}</a>
-      </div>
+        <div className="panel-body">
+          <a href={snippet.url} className="text-muted" target="_blank">{snippet.url}</a>
+        </div>
 
-    </div>
+      </div>
     );
   }
 }
