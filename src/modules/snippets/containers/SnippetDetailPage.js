@@ -28,9 +28,6 @@ class SnippetDetailPage extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onCheckChange = this.onCheckChange.bind(this);
-    this.onAddDate = this.onAddDate.bind(this);
-    this.onRemoveDate = this.onRemoveDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onCancel = this.onCancel.bind(this);
   }
@@ -61,50 +58,17 @@ class SnippetDetailPage extends React.Component {
     this.checkIfsnippetIsDirty();
   }
 
-  onCheckChange(event) {
-    let propKey = event.target.name;
-    let snippet = this.state.snippet;
-    snippet[propKey] = event.target.checked;
-    this.setState({ snippet });
-    this.checkIfsnippetIsDirty();
-  }
-
-  onAddDate(date) {
-    let snippet = this.state.snippet;
-    snippet.dates.push(date);
-    this.setState({ snippet });
-    this.checkIfsnippetIsDirty();
-  }
-
-  onRemoveDate(date) {
-    let snippet = this.state.snippet;
-    snippet.dates = snippet.dates.filter((d) => d !== date);
-    this.setState({ snippet });
-    this.checkIfsnippetIsDirty();
-  }
-
   onSubmit(event) {
     event.preventDefault();
-
-    if (this.isValid()) {
-      this.setState({ working: true });
-      this.props.actions.update(this.state.snippet)
-        .then(res => {
-          this.setState({ working: false });
-          toastr.success('Snippet updated', 'Success');
-          this.gotoListPage();
-        }, err => {
-          this.setState({
-            working: false,
-            apiError: err.message
-          });
-          toastr.error('Error updating snippet', 'Error');
-        });
-    }
+    this.submitUpdate();
   }
 
   onArchiveClick() {
     toastr.warning('onArchiveClick()', 'Not implemented');
+    let snippet = this.state.snippet;
+    snippet.archived = !snippet.archived;
+    this.setState({ snippet });
+    this.submitUpdate();
   }
 
   onDeleteClick() {
@@ -128,6 +92,24 @@ class SnippetDetailPage extends React.Component {
   onCancel(event) {
     event.preventDefault();
     this.gotoListPage();
+  }
+
+  submitUpdate() {
+    if (this.isValid()) {
+      this.setState({ working: true });
+      this.props.actions.update(this.state.snippet)
+        .then(res => {
+          this.setState({ working: false });
+          toastr.success('Snippet updated', 'Success');
+          this.gotoListPage();
+        }, err => {
+          this.setState({
+            working: false,
+            apiError: err.message
+          });
+          toastr.error('Error updating snippet', 'Error');
+        });
+    }
   }
 
   /*=============================================
@@ -207,12 +189,9 @@ class SnippetDetailPage extends React.Component {
               errors={this.state.errors}
               snippetIsDirty={this.state.snippetIsDirty}
               onChange={this.onChange}
-              onCheckChange={this.onCheckChange}
               onSubmit={this.onSubmit}
               onCancel={this.onCancel}
-              onAddDate={this.onAddDate}
-              onRemoveDate={this.onRemoveDate}
-            />
+              />
             <hr/>
 
             <div className="btn-group btn-group-justified">
@@ -220,14 +199,14 @@ class SnippetDetailPage extends React.Component {
                 type="button"
                 className="btn btn-info"
                 aria-label="Left Align"
-                onClick={() => this.onArchiveClick()}>
+                onClick={() => this.onArchiveClick() }>
                 <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
               </span>
               <span
                 type="button"
                 className="btn btn-danger"
                 aria-label="Left Align"
-                onClick={() => this.onDeleteClick()}>
+                onClick={() => this.onDeleteClick() }>
                 <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
               </span>
             </div>

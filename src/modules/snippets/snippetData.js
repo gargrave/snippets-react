@@ -4,8 +4,7 @@ export default {
     return {
       title: '',
       url: '',
-      dates: [],
-      finished: false,
+      archived: false,
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };
@@ -17,7 +16,8 @@ export default {
 
     return {
       title: record.title ? record.title.trim() : '',
-      url: record.url.trim(),
+      url: record.url ? record.url.trim() : '',
+      archived: record.archived || false,
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };

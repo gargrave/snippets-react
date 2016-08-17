@@ -43,7 +43,10 @@ export default {
       if (auth.isLoggedIn()) {
         let recordUrl = getUrlFor(auth.user(), record);
         let snippet = snippetData.buildRecordData(record);
-        snippet.created = record.created;
+
+        if (record.created) {
+          snippet.created = record.created;
+        }
 
         recordUrl.update(snippet, err => {
           if (err) {
