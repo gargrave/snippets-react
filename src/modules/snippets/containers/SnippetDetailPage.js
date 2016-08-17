@@ -11,7 +11,7 @@ import apiHelper from '../../../utils/apiHelper';
 import SnippetForm from '../components/SnippetForm';
 
 
-class SnippetEditPage extends React.Component {
+class SnippetDetailPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -240,7 +240,7 @@ class SnippetEditPage extends React.Component {
   }
 }
 
-SnippetEditPage.propTypes = {
+SnippetDetailPage.propTypes = {
   actions: PropTypes.object.isRequired,
   snippet: PropTypes.object.isRequired
 };
@@ -260,4 +260,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SnippetEditPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SnippetDetailPage);
