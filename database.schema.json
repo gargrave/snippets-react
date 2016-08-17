@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "$owner_id": {
+      "name": "(string)"
+    }
+  },
+  "snippets": {
+    "$owner_id": {
+      "$snippet_id": {
+        "title": "(string",
+        "url": "(string: url)",
+        "created": "(timestamp)",
+        "modified": "(timestamp)"
+      }
+    }
+  }
+}

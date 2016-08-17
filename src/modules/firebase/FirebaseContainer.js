@@ -4,17 +4,20 @@ import { bindActionCreators } from 'redux';
 
 import authActions from '../auth/authActions';
 import profileActions from '../profile/profileActions';
+import snippetsActions from '../snippets/snippetsActions';
 
 import {USE_MOCK_APIS} from '../../constants/env';
 import _authApi from '../auth/authApi';
 import _authApiMock from '../auth/authApiMock';
 import _profileApi from '../profile/profileApi';
 import _profileApiMock from '../profile/profileApiMock';
+import _snippetsApi from '../snippets/snippetsApi';
+import _snippetsApiMock from '../snippets/snippetsApiMock';
 
 
 const AUTH_API = USE_MOCK_APIS ? _authApiMock : _authApi;
-const PROFILE_API = USE_MOCK_APIS ? _profileApiMock : _profileApi;
-
+const PROFILES_API = USE_MOCK_APIS ? _profileApiMock : _profileApi;
+const SNIPPETS_API = USE_MOCK_APIS ? _snippetsApiMock : _snippetsApi;
 
 class FirebaseContainer extends React.Component {
   constructor(props, context) {
@@ -22,6 +25,7 @@ class FirebaseContainer extends React.Component {
 
     this.onAuthStateChange = this.onAuthStateChange.bind(this);
     this.onProfileValueChange = this.onProfileValueChange.bind(this);
+    this.onSnippetsValueChange = this.onSnippetsValueChange.bind(this);
   }
 
   componentWillMount() {
@@ -31,17 +35,23 @@ class FirebaseContainer extends React.Component {
   onAuthStateChange(user) {
     if (user) {
       // if logged in, watch for changes to relavent databases
-      PROFILE_API.addDbListener(this.onProfileValueChange);
+      PROFILES_API.addDbListener(this.onProfileValueChange);
+      SNIPPETS_API.addDbListener(this.onSnippetsValueChange);
       this.props.authActions.loginSuccess(user);
     } else {
       // if logged out, clear all listeners
-      PROFILE_API.removeDbListener(this.onProfileValueChange);
+      PROFILES_API.removeDbListener(this.onProfileValueChange);
+      SNIPPETS_API.removeDbListener(this.onSnippetsValueChange);
       this.props.authActions.logoutSuccess();
     }
   }
 
   onProfileValueChange(snapshot) {
     this.props.profileActions.fetchProfileSuccess(snapshot.val());
+  }
+
+  onSnippetsValueChange(snapshot) {
+    this.props.snippetsActions.afterFetch(snapshot.val());
   }
 
   render() {
@@ -54,6 +64,7 @@ class FirebaseContainer extends React.Component {
 FirebaseContainer.propTypes = {
   authActions: PropTypes.object.isRequired,
   profileActions: PropTypes.object.isRequired,
+  snippetsActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -65,6 +76,7 @@ function mapDispatchToProps(dispatch) {
   return {
     authActions: bindActionCreators(authActions, dispatch),
     profileActions: bindActionCreators(profileActions, dispatch),
+    snippetsActions: bindActionCreators(snippetsActions, dispatch),
   };
 }
 

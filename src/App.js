@@ -5,6 +5,7 @@ import bootstrap from 'bootstrap';
 
 import FirebaseContainer from './modules/firebase/FirebaseContainer';
 import Navbar from './modules/layout/components/Navbar';
+import SideNav from './modules/layout/components/SideNav';
 
 
 class App extends React.Component {
@@ -18,11 +19,23 @@ class App extends React.Component {
         />
 
         <div className="container">
+
+          <aside className="col-md-2 col-md-offset-1 hidden-sm hidden-xs">
+            <div className="row">
+              <h4>Navigation</h4>
+              <SideNav
+                location={this.props.location}
+                loggedIn={!!this.props.user.email}
+              />
+            </div>
+          </aside>
+
           <main className="col-md-8">
             <div className="row">
               {this.props.children}
             </div>
           </main>
+
         </div>
       </div>
     );
@@ -31,6 +44,7 @@ class App extends React.Component {
 
 App.propTypes = {
   children: PropTypes.element,
+  location: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
 };
 

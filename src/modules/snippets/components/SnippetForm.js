@@ -12,6 +12,7 @@ const SnippetForm = ({
       <TextInput
         label="Title"
         name="title"
+        value={snippet.title}
         placeholder="Title (Optional)"
         onChange={onChange}
         error={errors.title}
@@ -20,6 +21,7 @@ const SnippetForm = ({
       <TextInput
         label="URL"
         name="url"
+        value={snippet.url}
         placeholder="URL"
         onChange={onChange}
         error={errors.url}

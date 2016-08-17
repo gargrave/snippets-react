@@ -1,35 +1,90 @@
-import request from 'superagent';
+import firebase from '../../etc/firebaseConfig';
 
-import {fbToArray} from '../firebase/firebaseUtils';
+import auth from '../auth/authApi';
+import snippetData from './snippetData';
 
 
-const API_ROOT = 'https://snippets-dev-c5838.firebaseio.com/snippets';
+const getUrlFor = function(user, obj) {
+  return DB.ref(`${MODULE_NAME}/${user.uid}/${obj.id}`);
+};
+
+const MODULE_NAME = 'snippets';
+const DB = firebase.database();
+
+let currentUserId = null;
 
 export default {
-  getSnippets() {
+  createRecord: (record) => {
     return new Promise((resolve, reject) => {
-      request.get(API_ROOT + '.json')
-        .end((err, res) => {
+      if (auth.isLoggedIn()) {
+        let userId = auth.user().uid.toString();
+        let dbRef = DB.ref(`${MODULE_NAME}/${userId}`);
+        let newRecordData = snippetData.buildRecordData(record);
+        let newRecordRef = dbRef.push();
+
+        newRecordRef.set(newRecordData, err => {
           if (err) {
             reject(err);
           } else {
-            resolve(res.body);
+            dbRef.limitToLast(1).once('value', snapshot => {
+              resolve(snapshot.val());
+            });
           }
         });
+      } else {
+        reject('Not logged in'); // not logged in; reject immediately
+      }
     });
   },
 
-  createSnippet(data) {
+  /** Updates an existing record in the DB. */
+  updateRecord: (record) => {
     return new Promise((resolve, reject) => {
-      request.post(API_ROOT + '.json')
-        .send(data)
-        .end((err, res) => {
+      if (auth.isLoggedIn()) {
+        let recordUrl = getUrlFor(auth.user(), record);
+        let snippet = snippetData.buildRecordData(record);
+        snippet.created = record.created;
+
+        recordUrl.update(snippet, err => {
           if (err) {
             reject(err);
           } else {
-            resolve(res.body);
+            resolve();
           }
         });
+      } else {
+        reject('Not logged in'); // not logged in; reject immediately
+      }
     });
+  },
+
+  /** Destroys an existing record from the DB */
+  destroyRecord: (record) => {
+    return new Promise((resolve, reject) => {
+      if (auth.isLoggedIn()) {
+        let recordUrl = getUrlFor(auth.user(), record);
+
+        recordUrl.remove()
+          .then(function() {
+            resolve();
+          })
+          .catch(function(err) {
+            reject(err);
+          });
+      } else {
+        reject('Not logged in'); // not logged in; reject immediately
+      }
+    });
+  },
+
+  /** Adds a listener to db state change events. */
+  addDbListener: (callback) => {
+    currentUserId = auth.user().uid.toString();
+    DB.ref(`${MODULE_NAME}/${currentUserId}`).on('value', callback);
+  },
+
+  /** Removes a listener to db state change events. */
+  removeDbListener: (callback) => {
+    DB.ref(`${MODULE_NAME}/${currentUserId}`).off('value', callback);
   }
 };
