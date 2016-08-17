@@ -43,4 +43,5 @@ etc
 
 # firebase config files
 database.rules.json
+firebase.json
 .firebaserc

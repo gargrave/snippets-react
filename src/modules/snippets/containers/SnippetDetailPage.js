@@ -140,14 +140,14 @@ class SnippetDetailPage extends React.Component {
     // compare snippet 'title' properties
     let titleOrig = this.state.snippetCopy.title;
     let titleNew = this.state.snippet.title.trim();
-    if (titleNew && titleNew !== titleOrig) {
+    if (titleNew !== titleOrig) {
       snippetIsDirty = true;
     }
 
     // compare platforms
     let urlOrig = this.state.snippetCopy.url;
     let urlNew = this.state.snippet.url;
-    if (urlOrig !== urlNew) {
+    if (urlNew && urlOrig !== urlNew) {
       snippetIsDirty = true;
     }
 
