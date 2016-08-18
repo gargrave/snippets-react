@@ -11,6 +11,8 @@ const TEST_USER = 'testuser@fbtest.com';
 const TEST_PASS = 'testpassword';
 const UID = 'WmK0yFR5z2X7KhUxXvDZNPWErBG3';
 const REF = DB.ref(`${MODULE_NAME}/${UID}`);
+const NOW = new Date();
+const TIMESTAMP = NOW.getTime();
 
 let dbRef = null;
 
@@ -70,4 +72,49 @@ describe('Retrieve test', () => {
       });
     });
   });
+});
+
+describe('asdf', () => {
+  it('should asdf', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      let newRecordRef = dbRef.push();
+      let newRecordData = {
+        title: 'Great New Snippet',
+        url: 'https://duckduckgo.com',
+        archived: false,
+        created: TIMESTAMP,
+        modified: TIMESTAMP
+      };
+
+      // submit with good data
+      newRecordRef.set(newRecordData, err => {
+        expect(err).to.be.null;
+        if (err) {
+          reject(err);
+        }
+      });
+
+      // submit with no URL
+      console.log('\n\n------------------------------------------');
+      console.log('Testing submission with no "url" property.');
+      console.log('A Firebase error message is expected.\n');
+      newRecordData.url = '';
+      newRecordRef.update(newRecordData, err => {
+        expect(err).to.not.be.null;
+      });
+
+      newRecordRef.set(null, err => {
+        console.log('\nCleaning up test data...\n');
+        expect(err).to.be.null;
+        if (err) {
+          reject(err);
+        }
+        resolve();
+      })
+    });
+  })
 });
