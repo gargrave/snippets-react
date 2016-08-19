@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {chalkWarning} from '../tools/chalkConfig';
+import {chalkWarning} from '../../tools/chalkConfig';
 
 
 describe('Async test start message', () => {

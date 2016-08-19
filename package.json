@@ -20,10 +20,11 @@
     "prebuild": "npm run clean-dist && npm run lint && npm run test",
     "build": "babel-node tools/build.js",
     "deploy": "npm run build && firebase deploy",
-    "test": "mocha tools/testSetup.js \"test/**/*.spec.js\" --reporter progress",
+    "test": "mocha tools/testSetup.js \"test/client/**/*.spec.js\" --reporter progress",
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover:travis": "babel-node node_modules/isparta/bin/isparta cover --root src --report lcovonly _mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" && cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
     "test:watch": "npm run test -- --watch",
+    "test-api": "mocha tools/testSetup.js \"test/api/**/*.spec.js\" --reporter progress",
     "open:cover": "npm run test:cover && open coverage/index.html"
   },
   "author": "Gabe Hargrave",
