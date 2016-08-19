@@ -1,3 +1,4 @@
+/* eslint-disable no-console*/
 import {expect} from 'chai';
 import request from 'superagent';
 
@@ -22,7 +23,7 @@ let dbRef = null;
  * and as such, we are throwing a VERY obvious error message here,
  * since the tests themselves will not understand the conditions.
  */
-const checkDbRef = () => {
+function checkDbRef() {
   if (!dbRef) {
     console.log('\n');
     console.log('==================================================');
@@ -35,25 +36,12 @@ const checkDbRef = () => {
   return true;
 }
 
-const checkTestRecordRef = () => {
-  if (!dbRef) {
-    console.log('\n');
-    console.log('==================================================');
-    console.log('=  testRecordRef is null. Tests cannot proceed.  =');
-    console.log('==================================================');
-    console.log('\n');
-    expect(testRecordRef).to.not.be.null;
-    return false;
-  }
-  return true;
-}
-
-const logFirebaseWarning = () => {
+function logFirebaseWarning() {
   console.log('\n\nTesting Firebase submission with bad data.');
   console.log('An error message is expected: ');
 }
 
-const getValidSnippet = () => {
+function getValidSnippet() {
   return {
     title: 'Great New Snippet',
     url: 'https://duckduckgo.com',
@@ -71,9 +59,9 @@ describe('Auth API', () => {
         expect(true).to.be.false;
         reject();
       })
-      .catch((err) => {
-        resolve();
-      });
+        .catch((err) => {
+          resolve();
+        });
     });
   });
 });
@@ -123,7 +111,7 @@ describe('Snippets API', () => {
   // 'url' tests
   it('should reject data with no "url" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -145,7 +133,7 @@ describe('Snippets API', () => {
 
   it('should reject data with a blank "url" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -167,7 +155,7 @@ describe('Snippets API', () => {
 
   it('should reject data with a malformed "url" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -190,7 +178,7 @@ describe('Snippets API', () => {
   // 'title' tests
   it('should accept an empty "title" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -212,7 +200,7 @@ describe('Snippets API', () => {
 
   it('should reject data with no "title" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -234,7 +222,7 @@ describe('Snippets API', () => {
 
   it('should reject data with an insufficient "title" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -257,7 +245,7 @@ describe('Snippets API', () => {
   // 'archived' tests
   it('should reject data with no "archived" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -279,7 +267,7 @@ describe('Snippets API', () => {
 
   it('should reject data with an invalid "archived" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -302,7 +290,7 @@ describe('Snippets API', () => {
   // 'created' tests
   it('should reject data with no "created" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -324,7 +312,7 @@ describe('Snippets API', () => {
 
   it('should reject data with an invalid "created" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -347,7 +335,7 @@ describe('Snippets API', () => {
   // 'modified' tests
   it('should reject data with no "modified" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -369,7 +357,7 @@ describe('Snippets API', () => {
 
   it('should reject data with an invalid "modified" field', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
@@ -413,7 +401,7 @@ describe('Snippets API', () => {
   // deletion tests
   it('should remove the test data without throwing any errors', () => {
     return new Promise((resolve, reject) => {
-      if (!checkDbRef() || !checkTestRecordRef()) {
+      if (!checkDbRef()) {
         reject();
       }
 
