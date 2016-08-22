@@ -12,8 +12,10 @@ class SnippetsListPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    const pageVars = this.getPageVarsFromProps(props);
     this.state = {
-      pageHeader: this.getPageHeaderByProps(props)
+      fullListView: pageVars.fullListView,
+      pageHeader: pageVars.pageHeader
     };
   }
 
@@ -24,7 +26,11 @@ class SnippetsListPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ pageHeader: this.getPageHeaderByProps(nextProps) });
+    const pageVars = this.getPageVarsFromProps(nextProps);
+    this.setState({
+      fullListView: pageVars.fullListView,
+      pageHeader: pageVars.pageHeader
+    });
   }
 
   /*=============================================
@@ -45,16 +51,20 @@ class SnippetsListPage extends React.Component {
   /*=============================================
    = helper methods
    =============================================*/
-  getPageHeaderByProps(props) {
+  getPageVarsFromProps(props) {
+    let fullListView = true;
+    let pageHeader = 'My Snippets';
     let filterBy = props.filterBy;
 
     if (filterBy === 'starred') {
-      return 'Starred Snippets';
+      fullListView = false;
+      pageHeader = 'Starred Snippets (not implemented yet)';
     } else if (filterBy === 'archived') {
-      return 'Archived Snippets';
+      fullListView = false;
+      pageHeader = 'Archived Snippets';
     }
 
-    return 'My Snippets';
+    return { fullListView, pageHeader };
   }
 
   /*=============================================
@@ -68,21 +78,23 @@ class SnippetsListPage extends React.Component {
         </h2>
         <hr/>
 
-        <p>
-          <span
-            className="btn btn-success"
-            onClick={() => this.gotoCreatePage() }>
-            Add a New Snippet
-          </span>
-        </p>
+        {this.props.loggedIn && this.state.fullListView &&
+          <p>
+            <span
+              className="btn btn-success"
+              onClick={() => this.gotoCreatePage()}>
+              Add a New Snippet
+            </span>
+          </p>
+        }
 
         {this.props.snippets.map(snippet =>
           <SnippetListDetail
             key={snippet.id}
             snippet={snippet}
             gotoDetailPage={() => this.gotoDetailPage(snippet.id) }
-            />
-        ) }
+          />
+        )}
       </div>
     );
   }
@@ -104,7 +116,6 @@ function mapStateToProps(state, ownProps) {
       snippets = state.snippets.filter(s => s.archived);
       break;
     case 'starred':
-      toastr.warning('Not implemented yet.', 'Starred Snippets');
       snippets = state.snippets.filter(s => !s.archived);
       break;
     default:
