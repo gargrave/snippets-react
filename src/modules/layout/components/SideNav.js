@@ -25,8 +25,8 @@ const SideNav = ({loggedIn}) => {
           <h4>Snippets</h4>
           <ul>
             <li><Link to="/snippets">My Snippets</Link></li>
-            <li><Link to="/snippets">Starred</Link></li>
-            <li><Link to="/snippets">Archived</Link></li>
+            <li><Link to="/snippets/filter/starred">Starred</Link></li>
+            <li><Link to="/snippets/filter/archived">Archived</Link></li>
           </ul>
         </span>
       }

@@ -22,6 +22,7 @@ export default (
     <Route path="snippets" component={SnippetsListPage}/>
     <Route path="snippets/new" component={SnippetCreatePage}/>
     <Route path="snippets/:id" component={SnippetDetailPage}/>
+    <Route path="snippets/filter/:filterBy" component={SnippetsListPage}/>
 
     <Route path="account" component={AccountPage}/>
     <Route path="account/login" component={LoginPage}/>

@@ -51,7 +51,7 @@ class SnippetsCreatePage extends React.Component {
   onSubmit(event) {
     event.preventDefault();
 
-    if (this.isValid()) {
+    if (this.props.loggedIn && this.isValid()) {
       this.setState({ working: true });
       this.props.actions.create(this.state.snippet)
         .then(res => {
