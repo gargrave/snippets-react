@@ -15,6 +15,7 @@ let snippets = {
       title: 'A Home Maintenance Checklist',
       url: 'http://www.artofmanliness.com/2013/10/08/keep-your-house-in-tip-top-shape-an-incredibly-handy-home-maintenance-checklist/',
       archived: false,
+      starred: false,
       created: timestamp,
       modified: timestamp
     },
@@ -22,6 +23,7 @@ let snippets = {
       title: 'My Retirement Plan',
       url: 'https://connect.secure.wellsfargo.com/auth/logout?origin=irt&code=7101',
       archived: false,
+      starred: true,
       created: timestamp,
       modified: timestamp
     },
@@ -29,6 +31,7 @@ let snippets = {
       title: 'Lodash Docs',
       url: 'https://lodash.com/docs',
       archived: true,
+      starred: false,
       created: timestamp,
       modified: timestamp
     }

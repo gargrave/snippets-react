@@ -5,6 +5,7 @@ export default {
       title: '',
       url: '',
       archived: false,
+      starred: false,
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };
@@ -18,6 +19,7 @@ export default {
       title: record.title ? record.title.trim() : '',
       url: record.url ? record.url.trim() : '',
       archived: record.archived || false,
+      starred: record.starred || false,
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };

@@ -14,8 +14,11 @@ class SnippetsListPage extends React.Component {
 
     const pageVars = this.getPageVarsFromProps(props);
     this.state = {
+      snippet: null,
       fullListView: pageVars.fullListView,
-      pageHeader: pageVars.pageHeader
+      pageHeader: pageVars.pageHeader,
+      working: false,
+      apiError: '',
     };
   }
 
@@ -58,7 +61,7 @@ class SnippetsListPage extends React.Component {
 
     if (filterBy === 'starred') {
       fullListView = false;
-      pageHeader = 'Starred Snippets (not implemented yet)';
+      pageHeader = 'Starred Snippets';
     } else if (filterBy === 'archived') {
       fullListView = false;
       pageHeader = 'Archived Snippets';
@@ -67,10 +70,39 @@ class SnippetsListPage extends React.Component {
     return { fullListView, pageHeader };
   }
 
+  submitUpdate(snippet) {
+    if (this.props.loggedIn && !this.state.working && snippet) {
+      this.setState({ working: true });
+      this.props.actions.update(snippet)
+        .then(res => {
+          this.setState({ working: false });
+          toastr.success('Snippet updated', 'Success');
+        }, err => {
+          this.setState({
+            working: false,
+            apiError: err.message
+          });
+          toastr.error('Error updating snippet', 'Error');
+        });
+    }
+  }
+
+  /*=============================================
+   = action handlers
+   =============================================*/
+  onStarClick(event, _snippet) {
+    event.preventDefault();
+
+    let snippet = Object.assign({}, _snippet);
+    snippet.starred = !snippet.starred;
+    this.submitUpdate(snippet);
+  }
+
   /*=============================================
    = Render
    =============================================*/
   render() {
+    let {apiError} = this.state;
     return (
       <div>
         <h2>
@@ -78,6 +110,11 @@ class SnippetsListPage extends React.Component {
         </h2>
         <hr/>
 
+        {apiError &&
+          <div className="alert alert-danger">Error: {apiError}</div>
+        }
+
+        {/* 'add snippet' button, when logged in and on main list view */}
         {this.props.loggedIn && this.state.fullListView &&
           <p>
             <span
@@ -92,7 +129,8 @@ class SnippetsListPage extends React.Component {
           <SnippetListDetail
             key={snippet.id}
             snippet={snippet}
-            gotoDetailPage={() => this.gotoDetailPage(snippet.id) }
+            gotoDetailPage={() => this.gotoDetailPage(snippet.id)}
+            onStarClick={(e) => this.onStarClick(e, snippet)}
           />
         )}
       </div>
@@ -116,7 +154,7 @@ function mapStateToProps(state, ownProps) {
       snippets = state.snippets.filter(s => s.archived);
       break;
     case 'starred':
-      snippets = state.snippets.filter(s => !s.archived);
+      snippets = state.snippets.filter(s => s.starred);
       break;
     default:
       snippets = state.snippets.filter(s => !s.archived);
