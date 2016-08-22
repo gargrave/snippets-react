@@ -16,12 +16,18 @@ class LoginPage extends React.Component {
     this.isValid = this.isValid.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.redirectToCreatePage = this.redirectToCreatePage.bind(this);
+    this.gotoCreatePage = this.gotoCreatePage.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.loggedIn) {
+      this.gotoAccountPage();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
-      this.redirectToAccountPage();
+      this.gotoAccountPage();
     }
   }
 
@@ -45,11 +51,11 @@ class LoginPage extends React.Component {
     };
   }
 
-  redirectToAccountPage() {
+  gotoAccountPage() {
     goto.route('/account');
   }
 
-  redirectToCreatePage() {
+  gotoCreatePage() {
     goto.route('/account/create');
   }
 
@@ -105,7 +111,7 @@ class LoginPage extends React.Component {
         .then(() => {
           this.resetState();
           toastr.success('Logged in', 'Success');
-          this.redirectToAccountPage();
+          this.gotoAccountPage();
         })
         .catch(err => {
           this.setState({

@@ -26,6 +26,12 @@ class SnippetsCreatePage extends React.Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
+  componentWillMount() {
+    if (!this.props.loggedIn) {
+      this.gotoLoginPage();
+    }
+  }
+
   redirectToListPage() {
     goto.route('/snippets');
   }
@@ -123,11 +129,13 @@ class SnippetsCreatePage extends React.Component {
 }
 
 SnippetsCreatePage.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
+    loggedIn: !!state.user.email
   };
 }
 

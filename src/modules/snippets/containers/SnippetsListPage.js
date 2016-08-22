@@ -12,6 +12,16 @@ class SnippetsListPage extends React.Component {
     super(props, context);
   }
 
+  componentWillMount() {
+    if (!this.props.loggedIn) {
+      this.gotoLoginPage();
+    }
+  }
+
+  gotoLoginPage() {
+    goto.route('account/login');
+  }
+
   gotoCreatePage() {
     goto.route('/snippets/new');
   }
@@ -52,12 +62,14 @@ class SnippetsListPage extends React.Component {
 }
 
 SnippetsListPage.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   snippets: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
+    loggedIn: !!state.user.email,
     snippets: state.snippets
   };
 }

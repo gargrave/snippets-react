@@ -33,9 +33,13 @@ class SnippetDetailPage extends React.Component {
   }
 
   componentWillMount() {
-    // if we have an invalid snippet id, redirect back to list page
-    if (!this.props.snippet.id) {
-      this.gotoListPage();
+    if (!this.props.loggedIn) {
+      this.gotoLoginPage();
+    } else {
+      // if we have an invalid snippet id, redirect back to list page
+      if (!this.props.snippet.id) {
+        this.gotoListPage();
+      }
     }
   }
 
@@ -220,6 +224,7 @@ class SnippetDetailPage extends React.Component {
 }
 
 SnippetDetailPage.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   snippet: PropTypes.object.isRequired
 };
@@ -229,6 +234,7 @@ function mapStateToProps(state, ownProps) {
   let snippet = apiHelper.findRecordById(state.snippets, snippetId);
 
   return {
+    loggedIn: !!state.user.email,
     snippet
   };
 }
