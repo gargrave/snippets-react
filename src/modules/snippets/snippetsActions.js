@@ -1,7 +1,13 @@
 import * as types from '../../constants/actionTypes';
 
 import {fbToArray} from '../firebase/firebaseUtils';
-import api from './snippetsApi';
+import {USE_MOCK_APIS} from '../../constants/env';
+
+import mockSnippetsApi from './snippetsApiMock';
+import liveSnippetsApi from './snippetsApi';
+
+
+const api = USE_MOCK_APIS ? mockSnippetsApi : liveSnippetsApi;
 
 
 /*=============================================
@@ -100,20 +106,6 @@ function deleteSnippetError(error) {
  = Action Creators
  =============================================*/
 export default {
-  fetch: () => {
-    return (dispatch) => {
-      dispatch(fetchSnippetsBegin());
-      return api.getSnippets()
-        .then(res => {
-          dispatch(fetchSnippetsSuccess(fbToArray(res)));
-        })
-        .catch(err => {
-          dispatch(fetchSnippetsError(err));
-          throw (err);
-        });
-    };
-  },
-
   afterFetch: (snippets) => {
     return function(dispatch) {
       dispatch(fetchSnippetsSuccess(fbToArray(snippets)));
