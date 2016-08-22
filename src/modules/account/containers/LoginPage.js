@@ -19,12 +19,6 @@ class LoginPage extends React.Component {
     this.gotoCreatePage = this.gotoCreatePage.bind(this);
   }
 
-  componentWillMount() {
-    if (this.props.loggedIn) {
-      this.gotoAccountPage();
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
       this.gotoAccountPage();
@@ -57,6 +51,10 @@ class LoginPage extends React.Component {
 
   gotoCreatePage() {
     goto.route('/account/create');
+  }
+
+  gotoListPage() {
+    goto.route('/snippets');
   }
 
   /*==============================================
@@ -111,7 +109,7 @@ class LoginPage extends React.Component {
         .then(() => {
           this.resetState();
           toastr.success('Logged in', 'Success');
-          this.gotoAccountPage();
+          this.gotoListPage();
         })
         .catch(err => {
           this.setState({
