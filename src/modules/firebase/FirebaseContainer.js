@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import goto from '../../utils/goto';
 import authActions from '../auth/authActions';
 import profileActions from '../profile/profileActions';
 import snippetsActions from '../snippets/snippetsActions';
 
+import {HOME_ROUTE} from '../../constants/appConfig';
 import {USE_MOCK_APIS} from '../../constants/env';
 import _authApi from '../auth/authApi';
 import _authApiMock from '../auth/authApiMock';
@@ -38,6 +40,7 @@ class FirebaseContainer extends React.Component {
       PROFILES_API.addDbListener(this.onProfileValueChange);
       SNIPPETS_API.addDbListener(this.onSnippetsValueChange);
       this.props.authActions.loginSuccess(user);
+      goto.route(HOME_ROUTE);
     } else {
       // if logged out, clear all listeners
       PROFILES_API.removeDbListener(this.onProfileValueChange);
