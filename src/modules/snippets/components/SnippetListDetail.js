@@ -8,7 +8,7 @@ const SnippetListDetail = ({snippet, gotoDetailPage}) => {
 
       <div className="panel-heading">
         <h4 className="panel-title">
-          {snippet.title}
+          {snippet.title || 'Untitled Snippet'}
           <span
             className="glyphicon glyphicon-cog pull-right pointer"
             aria-hidden="true"
