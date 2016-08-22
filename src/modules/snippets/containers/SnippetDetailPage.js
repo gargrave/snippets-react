@@ -17,6 +17,8 @@ class SnippetDetailPage extends React.Component {
 
     let snippet = Object.assign({}, props.snippet);
     let snippetCopy = Object.assign({}, props.snippet);
+    let archiveIconClass = snippet.archived ?
+      'glyphicon glyphicon-repeat' : 'glyphicon glyphicon-ok';
 
     this.state = {
       snippet, // working snippet data
@@ -24,7 +26,8 @@ class SnippetDetailPage extends React.Component {
       snippetIsDirty: false, // whether the editing snippet differs from original
       working: false,
       errors: {},
-      apiError: ''
+      apiError: '',
+      archiveIconClass
     };
 
     this.onChange = this.onChange.bind(this);
@@ -68,7 +71,6 @@ class SnippetDetailPage extends React.Component {
   }
 
   onArchiveClick() {
-    toastr.warning('onArchiveClick()', 'Not implemented');
     let snippet = this.state.snippet;
     snippet.archived = !snippet.archived;
     this.setState({ snippet });
@@ -203,14 +205,14 @@ class SnippetDetailPage extends React.Component {
                 type="button"
                 className="btn btn-info"
                 aria-label="Left Align"
-                onClick={() => this.onArchiveClick() }>
-                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                onClick={() => this.onArchiveClick()}>
+                <span className={this.state.archiveIconClass} aria-hidden="true"></span>
               </span>
               <span
                 type="button"
                 className="btn btn-danger"
                 aria-label="Left Align"
-                onClick={() => this.onDeleteClick() }>
+                onClick={() => this.onDeleteClick()}>
                 <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
               </span>
             </div>
