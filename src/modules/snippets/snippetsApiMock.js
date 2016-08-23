@@ -9,7 +9,8 @@ import snippetData from './snippetData';
 let snippetId = 10;
 let mockDate = new Date();
 let timestamp = mockDate.getTime();
-let snippets = {
+
+export let snippets = {
   '0': {
     '0': {
       title: 'A Home Maintenance Checklist',
@@ -25,7 +26,7 @@ let snippets = {
       archived: false,
       starred: true,
       created: timestamp,
-      modified: timestamp
+      modified: timestamp + 10
     },
     '2': {
       title: 'Lodash Docs',
@@ -34,6 +35,22 @@ let snippets = {
       starred: false,
       created: timestamp,
       modified: timestamp
+    },
+    '3': {
+      title: '15 Interesting JavaScript and CSS Libraries',
+      url: 'http://tutorialzine.com/2016/08/15-interesting-javascript-and-css-libraries-for-august-2016/',
+      archived: false,
+      starred: false,
+      created: timestamp,
+      modified: timestamp - 10
+    },
+    '4': {
+      title: 'Example: Testing in React/Slingshot',
+      url: 'https://github.com/coryhouse/react-slingshot/blob/master/src/components/FuelSavingsForm.spec.js',
+      archived: false,
+      starred: true,
+      created: timestamp,
+      modified: timestamp + 20
     }
   }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-console*/
 import {expect} from 'chai';
 import {chalkWarning} from '../../tools/chalkConfig';
 

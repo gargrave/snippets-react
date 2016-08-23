@@ -8,7 +8,7 @@ import goto from '../../../utils/goto';
 import SnippetListDetail from '../components/SnippetListDetail';
 
 
-class SnippetsListPage extends React.Component {
+export class SnippetsListPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -149,6 +149,7 @@ function mapStateToProps(state, ownProps) {
   let filterBy = ownProps.params.filterBy;
   let snippets;
 
+
   switch (filterBy) {
     case 'archived':
       snippets = state.snippets.filter(s => s.archived);
@@ -159,6 +160,7 @@ function mapStateToProps(state, ownProps) {
     default:
       snippets = state.snippets.filter(s => !s.archived);
   }
+  snippets.sort((a, b) => a.modified < b.modified ? 1 : -1 );
 
   return {
     loggedIn: !!state.user.email,
