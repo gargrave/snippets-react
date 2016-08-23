@@ -18,7 +18,7 @@ const TIMESTAMP = NOW.getTime();
 let dbRef = null;
 
 /**
- * Checks if we successfully have authenticated and have a valid
+ * Checks if we have successfully authenticated and have a valid
  * Firebase.database() ref. It not, none of the tests can proceed,
  * and as such, we are throwing a VERY obvious error message here,
  * since the tests themselves will not understand the conditions.
@@ -46,13 +46,16 @@ function getValidSnippet() {
     title: 'Great New Snippet',
     url: 'https://duckduckgo.com',
     archived: false,
+    starred: false,
     created: TIMESTAMP,
     modified: TIMESTAMP
   };
 }
 
 describe('Auth API', () => {
-  // no read without auth test
+  /*=============================================
+   = no read without auth test
+   =============================================*/
   it('should not be able read or write when not logged in', () => {
     return new Promise((resolve, reject) => {
       DB.ref(`${MODULE_NAME}/${UID}`).once('value', (snapshot) => {
@@ -67,7 +70,9 @@ describe('Auth API', () => {
 });
 
 describe('Auth API', () => {
-  // login tests
+  /*=============================================
+   = login tests
+   =============================================*/
   it('should login with test credentials', () => {
     return new Promise((resolve, reject) => firebase.auth()
       .signInWithEmailAndPassword(TEST_USER, TEST_PASS)
@@ -85,7 +90,9 @@ describe('Auth API', () => {
 });
 
 describe('Snippets API', () => {
-  // proper write test
+  /*=============================================
+   = write test (with good data; should succeed)
+   =============================================*/
   it('should accept a valid Snippet', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -108,7 +115,9 @@ describe('Snippets API', () => {
     });
   });
 
-  // 'url' tests
+  /*=============================================
+   = 'url' tests
+   =============================================*/
   it('should reject data with no "url" field', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -175,7 +184,9 @@ describe('Snippets API', () => {
     });
   });
 
-  // 'title' tests
+  /*=============================================
+   = 'title' tests
+   =============================================*/
   it('should accept an empty "title" field', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -242,7 +253,9 @@ describe('Snippets API', () => {
     });
   });
 
-  // 'archived' tests
+  /*=============================================
+   = 'archived' tests
+   =============================================*/
   it('should reject data with no "archived" field', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -287,7 +300,57 @@ describe('Snippets API', () => {
     });
   });
 
-  // 'created' tests
+  /*=============================================
+   = 'starred' tests
+   =============================================*/
+  it('should reject data with no "starred" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with no 'starred' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      delete testRecordData.starred;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+  it('should reject data with an invalid "starred" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with malformed 'starred' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      testRecordData.starred = 123;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+
+  /*=============================================
+   = 'created' tests
+   =============================================*/
   it('should reject data with no "created" field', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -332,7 +395,9 @@ describe('Snippets API', () => {
     });
   });
 
-  // 'modified' tests
+  /*=============================================
+   = 'modified' tests
+   =============================================*/
   it('should reject data with no "modified" field', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -377,7 +442,9 @@ describe('Snippets API', () => {
     });
   });
 
-  // retrieval tests
+  /*=============================================
+   = retrieval tests
+   =============================================*/
   it('should retrieve values and convert them to an array', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
@@ -398,7 +465,9 @@ describe('Snippets API', () => {
     });
   });
 
-  // deletion tests
+  /*=============================================
+   = deletion tests
+   =============================================*/
   it('should remove the test data without throwing any errors', () => {
     return new Promise((resolve, reject) => {
       if (!checkDbRef()) {
