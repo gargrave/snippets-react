@@ -30,6 +30,11 @@ body {
   a:visited {
     color: #61c;
   }
+  word-wrap: break-word;
+}
+
+.panel-footer {
+  border-top: 0;
 }
 
 /*=============================================
@@ -49,7 +54,7 @@ $snippetBgGray: rgb(207, 216, 220);
     background: $snippetBgWhite;
   }
   .panel-footer {
-    background: desaturate(darken($snippetBgWhite, 15), 25);
+    background: desaturate(darken($snippetBgWhite, 10), 20);
   }
 }
 
@@ -111,7 +116,7 @@ $snippetBgGray: rgb(207, 216, 220);
     background: $snippetBgGray;
   }
   .panel-footer {
-    background: desaturate(darken($snippetBgGray, 15), 25);
+    background: desaturate(darken($snippetBgGray, 10), 20);
   }
 }
 
