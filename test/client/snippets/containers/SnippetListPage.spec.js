@@ -6,10 +6,11 @@ import {mount, shallow} from 'enzyme';
 import {expect} from 'chai';
 import sinon from 'sinon';
 
-import {fbToArray} from '../../../src/modules/firebase/firebaseUtils';
-import {snippets} from '../../../src/modules/snippets/snippetsApiMock';
-import SnippetsListPageDefault, {SnippetsListPage} from '../../../src/modules/snippets/containers/SnippetsListPage';
-import SnippetListDetail from '../../../src/modules/snippets/components/SnippetListDetail';
+import firebaseConfig from '../../../../src/etc/firebaseConfig';
+import {fbToArray} from '../../../../src/modules/firebase/firebaseUtils';
+import {snippets} from '../../../../src/modules/snippets/snippetsApiMock';
+import SnippetsListPageDefault, {SnippetsListPage} from '../../../../src/modules/snippets/containers/SnippetsListPage';
+import SnippetListDetail from '../../../../src/modules/snippets/components/SnippetListDetail';
 
 
 const middlewares = [thunk];
@@ -43,7 +44,7 @@ describe('<SnippetsListPage />', () => {
       />
     );
 
-    expect(wrapper.find(SnippetListDetail)).to.be.length(mockSnippets.length);
+    expect(wrapper.find(SnippetListDetail)).to.have.length(mockSnippets.length);
   });
 
   it('should contain a list of starred Snippets', () => {
@@ -54,7 +55,7 @@ describe('<SnippetsListPage />', () => {
       </Provider>
     );
 
-    expect(wrapper.find(SnippetListDetail)).to.be.length(starredSnippets.length);
+    expect(wrapper.find(SnippetListDetail)).to.have.length(starredSnippets.length);
   });
 
   it('should contain a list of archived Snippets', () => {
@@ -65,6 +66,6 @@ describe('<SnippetsListPage />', () => {
       </Provider>
     );
 
-    expect(wrapper.find(SnippetListDetail)).to.be.length(archivedSnippets.length);
+    expect(wrapper.find(SnippetListDetail)).to.have.length(archivedSnippets.length);
   });
 });
