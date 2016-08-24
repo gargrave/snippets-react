@@ -94,7 +94,8 @@ class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  location: PropTypes.object
 };
 
 export default Navbar;

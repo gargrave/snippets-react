@@ -1,4 +1,4 @@
-import firebase from '../../etc/firebaseConfig';
+import firebase from 'firebase';
 
 import auth from '../auth/authApi';
 import snippetData from './snippetData';

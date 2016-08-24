@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import { Link, IndexLink } from 'react-router';
+import firebaseConfig from './etc/firebaseConfig';
 import bootstrap from 'bootstrap';
 
 import FirebaseContainer from './modules/firebase/FirebaseContainer';

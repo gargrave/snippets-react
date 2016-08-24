@@ -71,4 +71,4 @@ export default {
       dispatch(_authAjaxEnd());
     };
   }
-}
+};
