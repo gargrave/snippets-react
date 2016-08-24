@@ -5,6 +5,7 @@ import toastr from 'toastr';
 
 import actions from '../snippetsActions';
 import goto from '../../../utils/goto';
+import snippetData from '../snippetData';
 import SnippetListDetail from '../components/SnippetListDetail';
 
 
@@ -98,6 +99,17 @@ export class SnippetsListPage extends React.Component {
     this.submitUpdate(snippet);
   }
 
+  onColorClick(event, _snippet, color) {
+    event.preventDefault();
+
+    let colorValue = color.trim().toLocaleLowerCase() || 'white';
+    if (snippetData.isValidColor(colorValue) && _snippet.color !== colorValue) {
+      let snippet = Object.assign({}, _snippet);
+      snippet.color = colorValue;
+      this.submitUpdate(snippet);
+    }
+  }
+
   /*=============================================
    = Render
    =============================================*/
@@ -131,6 +143,7 @@ export class SnippetsListPage extends React.Component {
             snippet={snippet}
             gotoDetailPage={() => this.gotoDetailPage(snippet.id)}
             onStarClick={(e) => this.onStarClick(e, snippet)}
+            onColorClick={this.onColorClick.bind(this)}
           />
         )}
       </div>

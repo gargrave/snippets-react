@@ -1,3 +1,5 @@
+const validColors = ['white', 'red', 'green', 'blue', 'yellow', 'orange', 'teal', 'gray'];
+
 export default {
   getNewRecord: function() {
     let dateNow = new Date();
@@ -21,9 +23,14 @@ export default {
       url: record.url ? record.url.trim() : '',
       archived: record.archived || false,
       starred: record.starred || false,
-      color: record.color || 'white',
+      color: record.color ? record.color.trim() : 'white',
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };
+  },
+
+  isValidColor: function(color) {
+    let colorClean = (color || '').trim().toLocaleLowerCase();
+    return validColors.find((c) => c === colorClean);
   }
 };
