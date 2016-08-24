@@ -1,8 +1,9 @@
 /* eslint-disable no-console*/
 import {expect} from 'chai';
 import request from 'superagent';
+import firebase from 'firebase';
 
-import firebase from '../../src/etc/firebaseConfig';
+import firebaseConfig from '../../src/etc/firebaseConfig';
 import {fbToArray} from '../../src/modules/firebase/firebaseUtils';
 
 
