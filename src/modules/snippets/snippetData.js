@@ -6,6 +6,7 @@ export default {
       url: '',
       archived: false,
       starred: false,
+      color: 'white',
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };
@@ -20,6 +21,7 @@ export default {
       url: record.url ? record.url.trim() : '',
       archived: record.archived || false,
       starred: record.starred || false,
+      color: record.color || 'white',
       created: dateNow.getTime(),
       modified: dateNow.getTime()
     };

@@ -1,5 +1,6 @@
 body {
   padding-top: 70px;
+  background: #e8e8e8;
 }
 
 .pointer {
@@ -15,20 +16,103 @@ body {
   color: #e50000;
 }
 
-.list-group-alt-row {
-  background: #f1f1f1;
+.panel {
+  border: 0;
+  max-width: 550px;
+  box-shadow: 0 3px 3px 0
+    rgba(0,0,0,0.14),0 3px 1px -2px
+    rgba(0,0,0,0.2),0 1px 5px 0
+    rgba(0,0,0,0.12);
+  a {
+    text-decoration: underline;
+    color: #15c;
+  }
+  a:visited {
+    color: #61c;
+  }
 }
 
-.date-list-group-container {
-  background: #eee;
+/*=============================================
+ = Snippet color presets
+ =============================================*/
+$snippetBgWhite: rgb(250, 250, 250);
+$snippetBgRed: rgb(255, 138, 128);
+$snippetBgGreen: rgb(204, 255, 144);
+$snippetBgBlue: rgb(128, 216, 255);
+$snippetBgYellow: rgb(255, 255, 141);
+$snippetBgOrange: rgb(255, 209, 128);
+$snippetBgTeal: rgb(167, 255, 235);
+$snippetBgGray: rgb(207, 216, 220);
+
+.snippet-color-white {
+  .panel-body {
+    background: $snippetBgWhite;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgWhite, 15), 25);
+  }
 }
 
-.date-list-group {
-  margin-bottom: 0;
+.snippet-color-red {
+  .panel-body {
+    background: $snippetBgRed;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgRed, 15), 25);
+  }
 }
 
-.date-list-item-added {
-  background: #dff0d8;
+.snippet-color-green {
+  .panel-body {
+    background: $snippetBgGreen;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgGreen, 15), 25);
+  }
+}
+
+.snippet-color-blue {
+  .panel-body {
+    background: $snippetBgBlue;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgBlue, 15), 25);
+  }
+}
+
+.snippet-color-yellow {
+  .panel-body {
+    background: $snippetBgYellow;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgYellow, 15), 25);
+  }
+}
+
+.snippet-color-orange {
+  .panel-body {
+    background: $snippetBgOrange;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgOrange, 15), 25);
+  }
+}
+.snippet-color-teal {
+  .panel-body {
+    background: $snippetBgTeal;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgTeal, 15), 25);
+  }
+}
+
+.snippet-color-gray {
+  .panel-body {
+    background: $snippetBgGray;
+  }
+  .panel-footer {
+    background: desaturate(darken($snippetBgGray, 15), 25);
+  }
 }
 
 // increase font size for forms on small devices

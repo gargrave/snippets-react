@@ -17,6 +17,7 @@ export let snippets = {
       url: 'http://www.artofmanliness.com/2013/10/08/keep-your-house-in-tip-top-shape-an-incredibly-handy-home-maintenance-checklist/',
       archived: false,
       starred: false,
+      color: '',
       created: timestamp,
       modified: timestamp
     },
@@ -25,6 +26,7 @@ export let snippets = {
       url: 'https://connect.secure.wellsfargo.com/auth/logout?origin=irt&code=7101',
       archived: false,
       starred: true,
+      color: 'orange',
       created: timestamp,
       modified: timestamp + 10
     },
@@ -33,6 +35,7 @@ export let snippets = {
       url: 'https://lodash.com/docs',
       archived: true,
       starred: false,
+      color: 'teal',
       created: timestamp,
       modified: timestamp
     },
@@ -41,6 +44,7 @@ export let snippets = {
       url: 'http://tutorialzine.com/2016/08/15-interesting-javascript-and-css-libraries-for-august-2016/',
       archived: false,
       starred: false,
+      color: 'gray',
       created: timestamp,
       modified: timestamp - 10
     },
@@ -49,6 +53,7 @@ export let snippets = {
       url: 'https://github.com/coryhouse/react-slingshot/blob/master/src/components/FuelSavingsForm.spec.js',
       archived: false,
       starred: true,
+      color: 'yellow',
       created: timestamp,
       modified: timestamp + 20
     }
