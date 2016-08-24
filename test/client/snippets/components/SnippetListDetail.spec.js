@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
+import sinon from 'sinon';
 
 import firebaseConfig from '../../../../src/etc/firebaseConfig';
 import SnippetListDetail from '../../../../src/modules/snippets/components/SnippetListDetail';
@@ -24,8 +25,9 @@ let snippet = {
 describe('<SnippetListDetail />', () => {
   const props = {
     snippet,
-    gotoDetailPage: () => null,
-    onStarClick: () => null
+    gotoDetailPage: sinon.spy(),
+    onStarClick: sinon.spy(),
+    onColorClick: sinon.spy()
   };
 
   it('should correctly display a Snippet with correct color values', () => {
@@ -65,23 +67,29 @@ describe('<SnippetListDetail />', () => {
     expect(wrapper.is('.snippet-color-white')).to.equal(true); // default color with invalid color value
   });
 
-  it('starred icon should show when Snippet is starred', () => {
+  it('non-starred icon should show when Snippet is not starred and should process clicks', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    expect('TEST NOT IMPLEMENTED').to.equal('');
+    const starNode = wrapper.find('.glyphicon-star-empty');
+
+    expect(starNode).to.have.length(1);
+    starNode.simulate('click');
+    expect(props.onStarClick).to.have.property('callCount', 1);
   });
 
-  it('non-starred icon should show when Snippet is not starred', () => {
+  it('starred icon should show when Snippet is starred and should process clicks', () => {
+    snippet.starred = true;
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    expect('TEST NOT IMPLEMENTED').to.equal('');
+    const starNode = wrapper.find('.glyphicon-star');
+
+    expect(starNode).to.have.length(1);
+    starNode.simulate('click');
+    expect(props.onStarClick).to.have.property('callCount', 2);
   });
 
-  it('should call gotoDetailPage correct', () => {
+  it('color icon should always show', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    expect('TEST NOT IMPLEMENTED').to.equal('');
-  });
+    const colorNode = wrapper.find('.snippet-control-color');
 
-  it('should call onStarClick correct', () => {
-    const wrapper = shallow(<SnippetListDetail {...props} />);
-    expect('TEST NOT IMPLEMENTED').to.equal('');
+    expect(colorNode).to.have.length(1);
   });
 });
