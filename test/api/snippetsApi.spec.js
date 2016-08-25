@@ -48,6 +48,7 @@ function getValidSnippet() {
     url: 'https://duckduckgo.com',
     archived: false,
     starred: false,
+    color: 'white',
     created: TIMESTAMP,
     modified: TIMESTAMP
   };
@@ -348,6 +349,53 @@ describe('Snippets API', () => {
     });
   });
 
+
+  /*=============================================
+   = 'color' tests
+   =============================================*/
+  it('should reject data with no "color" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with no 'color' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      delete testRecordData.color;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+  it('should reject data with an invalid "color" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with malformed 'color' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      testRecordData.color = 'invalid';
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
 
   /*=============================================
    = 'created' tests
