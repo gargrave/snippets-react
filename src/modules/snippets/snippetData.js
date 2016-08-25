@@ -1,4 +1,4 @@
-const validColors = ['white', 'red', 'green', 'blue', 'yellow', 'orange', 'teal', 'gray'];
+export const validColors = ['white', 'red', 'green', 'blue', 'yellow', 'orange', 'teal', 'gray'];
 
 export default {
   getNewRecord: function() {
@@ -16,8 +16,6 @@ export default {
 
   buildRecordData: function(record) {
     let dateNow = new Date();
-    let dates = record.dates ? record.dates.sort((a, b) => b > a ? 1 : -1) : [];
-
     return {
       title: record.title ? record.title.trim() : '',
       url: record.url ? record.url.trim() : '',

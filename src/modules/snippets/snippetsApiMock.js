@@ -35,7 +35,7 @@ export let snippets = {
       url: 'https://lodash.com/docs',
       archived: true,
       starred: false,
-      color: 'teal',
+      color: 'blue',
       created: timestamp,
       modified: timestamp
     },
@@ -44,7 +44,7 @@ export let snippets = {
       url: 'http://tutorialzine.com/2016/08/15-interesting-javascript-and-css-libraries-for-august-2016/',
       archived: false,
       starred: false,
-      color: 'gray',
+      color: 'blue',
       created: timestamp,
       modified: timestamp - 10
     },
@@ -53,7 +53,7 @@ export let snippets = {
       url: 'https://github.com/coryhouse/react-slingshot/blob/master/src/components/FuelSavingsForm.spec.js',
       archived: false,
       starred: true,
-      color: 'yellow',
+      color: 'blue',
       created: timestamp,
       modified: timestamp + 20
     }

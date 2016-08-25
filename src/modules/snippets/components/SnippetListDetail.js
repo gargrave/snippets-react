@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 
 import snippetData from '../snippetData';
+import SnippetColorPicker from './SnippetColorPicker';
 
 
 const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick}) => {
@@ -48,24 +49,8 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
           onClick={onStarClick}>
         </span>&nbsp;
 
-        {/* set color button */}
-        <span className="dropdown">
-          <span
-            className="snippet-control-color glyphicon glyphicon-tint pointer"
-            type="button" data-toggle="dropdown"
-            aria-hidden="true">
-          </span>
-          <ul className="dropdown-menu">
-            <li onClick={(e) => onColorSelect(e, 'white')}>White</li>
-            <li onClick={(e) => onColorSelect(e, 'red')}>Red</li>
-            <li onClick={(e) => onColorSelect(e, 'green')}>Green</li>
-            <li onClick={(e) => onColorSelect(e, 'blue')}>Blue</li>
-            <li onClick={(e) => onColorSelect(e, 'yellow')}>Yellow</li>
-            <li onClick={(e) => onColorSelect(e, 'orange')}>Orange</li>
-            <li onClick={(e) => onColorSelect(e, 'teal')}>Teal</li>
-            <li onClick={(e) => onColorSelect(e, 'gray')}>Gray</li>
-          </ul>
-        </span>
+        {/* color picker */}
+        <SnippetColorPicker onColorSelect={onColorSelect} />
 
         {/* goto detail view button */}
         <span
