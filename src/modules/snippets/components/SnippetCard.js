@@ -13,7 +13,13 @@ class SnippetCard extends Component {
         </div>
 
         <div className="panel-body">
-          <a href={snippet.url} className="text-muted" target="_blank">{snippet.url}</a>
+          <a
+            href={snippet.url}
+            className="text-muted"
+            target="_blank"
+            rel="noopener noreferrer">
+            {snippet.url}
+          </a>
         </div>
 
       </div>

@@ -38,7 +38,13 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
     <div className={getMainClass()}>
       <div className="panel-body">
         <h4 className="snippet-title">{snippet.title || 'Untitled Snippet'}</h4>
-        <a href={snippet.url} className="text-muted snippet-url" target="_blank">{snippet.url}</a>
+        <a
+          href={snippet.url}
+          className="text-muted snippet-url"
+          target="_blank"
+          rel="noopener noreferrer">
+          {snippet.url}
+        </a>
       </div>
 
       <div className="panel-footer snippet-controls">
