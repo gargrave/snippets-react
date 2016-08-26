@@ -71,13 +71,15 @@ export class SnippetsListPage extends React.Component {
     return { fullListView, pageHeader };
   }
 
-  submitUpdate(snippet) {
+  submitUpdate(snippet, successToast = true) {
     if (this.props.loggedIn && !this.state.working && snippet) {
       this.setState({ working: true });
       this.props.actions.update(snippet)
         .then(res => {
           this.setState({ working: false });
-          toastr.success('Snippet updated', 'Success');
+          if (successToast) {
+            toastr.success('Snippet updated', 'Success');
+          }
         }, err => {
           this.setState({
             working: false,
@@ -96,7 +98,7 @@ export class SnippetsListPage extends React.Component {
 
     let snippet = Object.assign({}, _snippet);
     snippet.starred = !snippet.starred;
-    this.submitUpdate(snippet);
+    this.submitUpdate(snippet, false);
   }
 
   onColorClick(event, _snippet, color) {
@@ -106,7 +108,7 @@ export class SnippetsListPage extends React.Component {
     if (snippetData.isValidColor(colorValue) && _snippet.color !== colorValue) {
       let snippet = Object.assign({}, _snippet);
       snippet.color = colorValue;
-      this.submitUpdate(snippet);
+      this.submitUpdate(snippet, false);
     }
   }
 

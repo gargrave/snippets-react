@@ -27,7 +27,6 @@ class Navbar extends React.Component {
       .then(() => {
         this.setState({ working: false });
         goto.route('/account/login');
-        toastr.info('Logged out', 'Success');
       });
   }
 
