@@ -11,6 +11,29 @@ $snippetGray: rgb(207, 216, 220);
   border-top: 0;
 }
 
+.snippet-panel {
+  .panel-body {
+    padding: 10px 16px;
+  }
+
+  .snippet-title {
+    a {
+      color: #333 !important;
+      text-decoration: none !important;
+      &:hover {
+        text-decoration: underline !important;
+      }
+    }
+  }
+}
+
+.new-snippet-panel {
+  cursor: pointer;
+  .panel-body {
+    padding: 3px 15px;
+  }
+}
+
 .snippet-control {
   font-size: 16px;
   margin: 0 10px;
@@ -97,11 +120,4 @@ $snippetGray: rgb(207, 216, 220);
 .dropdown-menu.color-picker-list {
   padding: 0;
   margin: 0;
-}
-
-.new-snippet-panel {
-  cursor: pointer;
-  .panel-body {
-    padding: 3px 15px;
-  }
 }
