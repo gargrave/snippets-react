@@ -4,8 +4,12 @@ import {validColors} from '../snippetData';
 
 
 class SnippetColorPicker extends Component {
-  getClassByColor(color) {
+  getColorItemClass(color) {
     return `color-picker-item snippet-color-${color}`;
+  }
+
+  getColorClickClass(color) {
+    return `color-picker-click-${color}`;
   }
 
   render() {
@@ -21,8 +25,10 @@ class SnippetColorPicker extends Component {
           {validColors.map((color) =>
             <li
               key={color}
-              className={this.getClassByColor(color)}>
-              <a onClick={(e) => this.props.onColorSelect(e, color)}>
+              className={this.getColorItemClass(color)}>
+              <a
+                className={this.getColorClickClass(color)}
+                onClick={(e) => this.props.onColorSelect(e, color)}>
               </a>
             </li>
           )}
