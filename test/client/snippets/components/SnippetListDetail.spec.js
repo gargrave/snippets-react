@@ -67,7 +67,7 @@ describe('<SnippetListDetail />', () => {
     expect(wrapper.is('.snippet-color-white')).to.equal(true); // default color with invalid color value
   });
 
-  it('non-starred icon should show when Snippet is not starred and should process clicks', () => {
+  it('should show non-starred icon when Snippet is not starred and should process clicks', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
     const starNode = wrapper.find('.glyphicon-star-empty');
 
@@ -76,7 +76,7 @@ describe('<SnippetListDetail />', () => {
     expect(props.onStarClick).to.have.property('callCount', 1);
   });
 
-  it('starred icon should show when Snippet is starred and should process clicks', () => {
+  it('should show starred icon when Snippet is starred and should process clicks', () => {
     snippet.starred = true;
     const wrapper = shallow(<SnippetListDetail {...props} />);
     const starNode = wrapper.find('.glyphicon-star');
@@ -86,9 +86,9 @@ describe('<SnippetListDetail />', () => {
     expect(props.onStarClick).to.have.property('callCount', 2);
   });
 
-  it('color icon should always show', () => {
+  it('should have a SnippetColorPicker', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    const colorNode = wrapper.find('.snippet-control-color');
+    const colorNode = wrapper.find('SnippetColorPicker');
 
     expect(colorNode).to.have.length(1);
   });
