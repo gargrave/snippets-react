@@ -6,6 +6,7 @@ import toastr from 'toastr';
 import actions from '../snippetsActions';
 import goto from '../../../utils/goto';
 import snippetData from '../snippetData';
+import NewSnippetPanel from '../components/NewSnippetPanel';
 import SnippetListDetail from '../components/SnippetListDetail';
 
 
@@ -118,16 +119,7 @@ export class SnippetsListPage extends React.Component {
           <div className="alert alert-danger">Error: {apiError}</div>
         }
 
-        {/* 'add snippet' button, when logged in and on main list view */}
-        {this.props.loggedIn && this.state.fullListView &&
-          <p>
-            <span
-              className="btn btn-success"
-              onClick={() => this.gotoCreatePage()}>
-              Add a New Snippet
-            </span>
-          </p>
-        }
+        <NewSnippetPanel onPanelClick={() => this.gotoCreatePage()} />
 
         {this.props.snippets.map(snippet =>
           <SnippetListDetail
