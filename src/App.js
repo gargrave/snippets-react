@@ -17,6 +17,7 @@ class App extends React.Component {
         <FirebaseContainer />
         <Navbar
           user={this.props.user}
+          location={this.props.location}
         />
 
         <div className="container-fluid">

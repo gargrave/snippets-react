@@ -17,7 +17,6 @@ export class SnippetsListPage extends React.Component {
     this.state = {
       snippet: null,
       fullListView: pageVars.fullListView,
-      pageHeader: pageVars.pageHeader,
       working: false,
       apiError: '',
     };
@@ -33,7 +32,6 @@ export class SnippetsListPage extends React.Component {
     const pageVars = this.getPageVarsFromProps(nextProps);
     this.setState({
       fullListView: pageVars.fullListView,
-      pageHeader: pageVars.pageHeader
     });
   }
 
@@ -57,18 +55,15 @@ export class SnippetsListPage extends React.Component {
    =============================================*/
   getPageVarsFromProps(props) {
     let fullListView = true;
-    let pageHeader = 'My Snippets';
     let filterBy = props.filterBy;
 
     if (filterBy === 'starred') {
       fullListView = false;
-      pageHeader = 'Starred Snippets';
     } else if (filterBy === 'archived') {
       fullListView = false;
-      pageHeader = 'Archived Snippets';
     }
 
-    return { fullListView, pageHeader };
+    return { fullListView };
   }
 
   submitUpdate(snippet, successToast = true) {
@@ -119,11 +114,6 @@ export class SnippetsListPage extends React.Component {
     let {apiError} = this.state;
     return (
       <div>
-        <h2>
-          {this.state.pageHeader}
-        </h2>
-        <hr/>
-
         {apiError &&
           <div className="alert alert-danger">Error: {apiError}</div>
         }

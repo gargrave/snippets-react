@@ -18,6 +18,18 @@ class Navbar extends React.Component {
     return path == location.pathname ? 'active' : '';
   }
 
+  getNavbarBrandText() {
+    //{APP_TITLE}&nbsp;&nbsp;>&nbsp;&nbsp;Starred
+    let path = '';
+    let loc = this.props.location.pathname;
+    if (loc.includes('filter/starred')) {
+      path = <span>&nbsp;&nbsp;|&nbsp;&nbsp;Starred</span>;
+    } else if (loc.includes('filter/archived')) {
+      path = <span>&nbsp;&nbsp;|&nbsp;&nbsp;Archived</span>;
+    }
+    return <span>Snippets{path}</span>;
+  }
+
   /** Handler for 'Logout' button; ends the current session. */
   onLogoutClick(event) {
     event.preventDefault();
@@ -44,7 +56,9 @@ class Navbar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to="/">{APP_TITLE}</Link>
+            <Link className="navbar-brand" to="/">
+              {this.getNavbarBrandText()}
+            </Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
