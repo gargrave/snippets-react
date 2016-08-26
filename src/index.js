@@ -3,6 +3,8 @@ import React from 'react';
 import {render} from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
+
+import configureApp from './config';
 import routes from './routes';
 import configureStore from './store/configureStore';
 
@@ -13,6 +15,7 @@ import './styles/styles.scss';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 
+configureApp();
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
