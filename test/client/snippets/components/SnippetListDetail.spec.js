@@ -32,12 +32,12 @@ describe('<SnippetListDetail />', () => {
 
   it('should correctly display a Snippet with correct color values', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    const titleNode = wrapper.find('.snippet-title');
+    const titleParentNode = wrapper.find('.snippet-title');
+    const titleUrlNode = wrapper.find('.snippet-title-url');
     const urlNode = wrapper.find('.snippet-url');
 
-    expect(wrapper.is('.snippet-color-blue')).to.equal(true); // blue color property
-    expect(titleNode).to.have.length(1); // exactly one title element
-    expect(titleNode.get(0).props.children).to.contain(snippet.title); // correct title value
+    expect(titleParentNode).to.have.length(1); // exactly one title element
+    expect(titleUrlNode.get(0).props.children).to.contain(snippet.title); // correct title value
     expect(urlNode).to.have.length(1); // exactly one url element
     expect(urlNode.get(0).props.children).to.contain(snippet.url); // correct url value
     expect(wrapper.find('.snippet-controls')).to.have.length(1); // exactly one 'controls' element
@@ -47,9 +47,9 @@ describe('<SnippetListDetail />', () => {
     snippet.color = '';
     snippet.title = '';
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    const titleNode = wrapper.find('.snippet-title');
+    const titleUrlNode = wrapper.find('.snippet-title-url');
 
-    expect(titleNode.get(0).props.children).to.contain(DEFAULT_TITLE); // default title when no value is passed in
+    expect(titleUrlNode.get(0).props.children).to.contain(DEFAULT_TITLE); // default title when no value is passed in
     expect(wrapper.is('.snippet-color-white')).to.equal(true); // default color when no value is passed in
   });
 

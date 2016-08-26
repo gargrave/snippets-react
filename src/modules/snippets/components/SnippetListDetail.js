@@ -41,6 +41,7 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
         <h4 className="snippet-title">
           <a
             href={snippet.url}
+            className="snippet-title-url"
             target="_blank"
             rel="noopener noreferrer">
             {snippet.title || 'Untitled Snippet'}
