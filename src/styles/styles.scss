@@ -1,3 +1,5 @@
+@import 'snippets';
+
 body {
   padding-top: 70px;
   background: #e8e8e8;
@@ -35,89 +37,6 @@ body {
 
 .panel-footer {
   border-top: 0;
-}
-
-/*=============================================
- = Snippet color presets
- =============================================*/
-$snippetBgWhite: rgb(250, 250, 250);
-$snippetBgRed: rgb(255, 138, 128);
-$snippetBgGreen: rgb(204, 255, 144);
-$snippetBgBlue: rgb(128, 216, 255);
-$snippetBgYellow: rgb(255, 255, 141);
-$snippetBgOrange: rgb(255, 209, 128);
-$snippetBgTeal: rgb(167, 255, 235);
-$snippetBgGray: rgb(207, 216, 220);
-
-.snippet-color-white {
-  .panel-body {
-    background: $snippetBgWhite;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgWhite, 10), 20);
-  }
-}
-
-.snippet-color-red {
-  .panel-body {
-    background: $snippetBgRed;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgRed, 15), 25);
-  }
-}
-
-.snippet-color-green {
-  .panel-body {
-    background: $snippetBgGreen;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgGreen, 15), 25);
-  }
-}
-
-.snippet-color-blue {
-  .panel-body {
-    background: $snippetBgBlue;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgBlue, 15), 25);
-  }
-}
-
-.snippet-color-yellow {
-  .panel-body {
-    background: $snippetBgYellow;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgYellow, 15), 25);
-  }
-}
-
-.snippet-color-orange {
-  .panel-body {
-    background: $snippetBgOrange;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgOrange, 15), 25);
-  }
-}
-.snippet-color-teal {
-  .panel-body {
-    background: $snippetBgTeal;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgTeal, 15), 25);
-  }
-}
-
-.snippet-color-gray {
-  .panel-body {
-    background: $snippetBgGray;
-  }
-  .panel-footer {
-    background: desaturate(darken($snippetBgGray, 10), 20);
-  }
 }
 
 // increase font size for forms on small devices

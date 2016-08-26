@@ -1,0 +1,96 @@
+$snippetWhite: rgb(250, 250, 250);
+$snippetRed: rgb(255, 138, 128);
+$snippetGreen: rgb(204, 255, 144);
+$snippetBlue: rgb(128, 216, 255);
+$snippetYellow: rgb(255, 255, 141);
+$snippetOrange: rgb(255, 209, 128);
+$snippetTeal: rgb(167, 255, 235);
+$snippetGray: rgb(207, 216, 220);
+
+.snippet-control {
+  font-size: 16px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.snippet-color-white {
+  & > .panel-body, & > a {
+    background-color: $snippetWhite;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetWhite, 10), 20) !important;
+  }
+}
+
+.snippet-color-red {
+  & > .panel-body, & > a {
+    background-color: $snippetRed;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetRed, 15), 25) !important;
+  }
+}
+
+.snippet-color-green {
+  & > .panel-body, & > a {
+    background-color: $snippetGreen;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetGreen, 15), 25) !important;
+  }
+}
+
+.snippet-color-blue {
+  & > .panel-body, & > a {
+    background-color: $snippetBlue;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetBlue, 15), 25) !important;
+  }
+}
+
+.snippet-color-yellow {
+  & > .panel-body, & > a {
+    background-color: $snippetYellow;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetYellow, 15), 25) !important;
+  }
+}
+
+.snippet-color-orange {
+  & > .panel-body, & > a {
+    background-color: $snippetOrange
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetOrange, 15), 25) !important;
+  }
+}
+
+.snippet-color-teal {
+  & > .panel-body, & > a {
+    background-color: $snippetTeal;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetTeal, 15), 25) !important;
+  }
+}
+
+.snippet-color-gray {
+  & > .panel-body, & > a {
+    background-color: $snippetGray;
+  }
+  & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($snippetGray, 10), 20) !important;
+  }
+}
+
+.color-picker-item > a {
+  min-height: 32px;
+  text-decoration: none !important;
+}
+
+.dropdown-menu.color-picker-list {
+  padding: 0;
+  margin: 0;
+}
