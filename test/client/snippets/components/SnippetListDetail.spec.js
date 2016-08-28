@@ -27,6 +27,7 @@ describe('<SnippetListDetail />', () => {
     snippet,
     gotoDetailPage: sinon.spy(),
     onStarClick: sinon.spy(),
+    onArchiveClick: sinon.spy(),
     onColorClick: sinon.spy()
   };
 
@@ -69,7 +70,7 @@ describe('<SnippetListDetail />', () => {
 
   it('should show non-starred icon when Snippet is not starred and should process clicks', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    const starNode = wrapper.find('.glyphicon-star-empty');
+    const starNode = wrapper.find('.fa-star-o');
 
     expect(starNode).to.have.length(1);
     starNode.simulate('click');
@@ -79,7 +80,7 @@ describe('<SnippetListDetail />', () => {
   it('should show starred icon when Snippet is starred and should process clicks', () => {
     snippet.starred = true;
     const wrapper = shallow(<SnippetListDetail {...props} />);
-    const starNode = wrapper.find('.glyphicon-star');
+    const starNode = wrapper.find('.fa-star');
 
     expect(starNode).to.have.length(1);
     starNode.simulate('click');
@@ -91,5 +92,12 @@ describe('<SnippetListDetail />', () => {
     const colorNode = wrapper.find('SnippetColorPicker');
 
     expect(colorNode).to.have.length(1);
+  });
+
+  it('should have a SnippetArchiveButton', () => {
+    const wrapper = shallow(<SnippetListDetail {...props} />);
+    const archiveNode = wrapper.find('SnippetArchiveButton');
+
+    expect(archiveNode).to.have.length(1);
   });
 });
