@@ -78,7 +78,7 @@ const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, gotoDetailPage
 
         {/* goto detail view button */}
         <span
-          className="fa fa-ellipsis-v fa-pull-right pointer snippet-control"
+          className="fa fa-cog fa-pull-right pointer snippet-control"
           aria-hidden="true"
           onClick={gotoDetailPage}>
         </span>
