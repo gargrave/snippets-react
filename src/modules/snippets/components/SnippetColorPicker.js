@@ -16,7 +16,7 @@ class SnippetColorPicker extends Component {
     return (
       <span className="dropdown">
         <span
-          className="fa fa-tint fa-lg dropdown-toggle pointer snippet-control snippet-control-color"
+          className="fa fa-chevron-circle-down dropdown-toggle pointer snippet-control snippet-control-color"
           type="button"
           data-toggle="dropdown"
           aria-hidden="true">

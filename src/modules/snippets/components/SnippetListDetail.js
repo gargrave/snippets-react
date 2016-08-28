@@ -1,10 +1,11 @@
 import React, {PropTypes} from 'react';
 
 import snippetData from '../snippetData';
+import SnippetArchiveButton from './SnippetArchiveButton';
 import SnippetColorPicker from './SnippetColorPicker';
 
 
-const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick}) => {
+const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, gotoDetailPage}) => {
   /**
    * Builds and returns the style string for the top-level element, including the color
    * of the Snippet panel, based on teh Snippet's 'color' property
@@ -26,12 +27,12 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
    */
   function getStarClass() {
     return snippet.starred ?
-      'fa fa-star fa-lg pointer snippet-control snippet-control-star' :
-      'fa fa-star-o fa-lg pointer snippet-control snippet-control-star';
+      'fa fa-star pointer snippet-control snippet-control-star' :
+      'fa fa-star-o pointer snippet-control snippet-control-star';
   }
 
   function onColorSelect(event, color) {
-    onColorClick(event, snippet, color);
+    this.props.onColorClick(event, snippet, color);
   }
 
   return (
@@ -69,9 +70,15 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
         {/* color picker */}
         <SnippetColorPicker onColorSelect={onColorSelect} />
 
+        {/* archive/unarchive button */}
+        <SnippetArchiveButton
+          snippet={snippet}
+          onArchiveClick={onArchiveClick}
+        />
+
         {/* goto detail view button */}
         <span
-          className="fa fa-ellipsis-v fa-lg pull-right pointer snippet-control"
+          className="fa fa-ellipsis-v fa-pull-right pointer snippet-control"
           aria-hidden="true"
           onClick={gotoDetailPage}>
         </span>
@@ -85,6 +92,7 @@ SnippetListDetail.propTypes = {
   snippet: PropTypes.object.isRequired,
   gotoDetailPage: PropTypes.func.isRequired,
   onStarClick: PropTypes.func.isRequired,
+  onArchiveClick: PropTypes.func.isRequired,
   onColorClick: PropTypes.func.isRequired,
 };
 

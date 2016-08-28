@@ -97,6 +97,14 @@ export class SnippetsListPage extends React.Component {
     this.submitUpdate(snippet, false);
   }
 
+  onArchiveClick(event, _snippet) {
+    event.preventDefault();
+
+    let snippet = Object.assign({}, _snippet);
+    snippet.archived = !snippet.archived;
+    this.submitUpdate(snippet, false);
+  }
+
   onColorClick(event, _snippet, color) {
     event.preventDefault();
 
@@ -127,6 +135,7 @@ export class SnippetsListPage extends React.Component {
             snippet={snippet}
             gotoDetailPage={() => this.gotoDetailPage(snippet.id)}
             onStarClick={(e) => this.onStarClick(e, snippet)}
+            onArchiveClick={(e) => this.onArchiveClick(e, snippet)}
             onColorClick={this.onColorClick.bind(this)}
           />
         )}
