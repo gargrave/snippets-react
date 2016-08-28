@@ -157,7 +157,7 @@ function mapStateToProps(state, ownProps) {
     default:
       snippets = state.snippets.filter(s => !s.archived);
   }
-  snippets.sort((a, b) => a.modified < b.modified ? 1 : -1 );
+  snippets.sort((a, b) => a.created < b.created ? 1 : -1 );
 
   return {
     loggedIn: !!state.user.email,

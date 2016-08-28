@@ -26,6 +26,10 @@ $snippetGray: rgb(207, 216, 220);
       }
     }
   }
+
+  .panel-footer {
+    padding: 8px 15px;
+  }
 }
 
 .new-snippet-panel {
@@ -36,9 +40,8 @@ $snippetGray: rgb(207, 216, 220);
 }
 
 .snippet-control {
-  font-size: 16px;
-  margin: 0 10px;
-  vertical-align: middle;
+  margin: 0 14px;
+  line-height: inherit;
 }
 
 .snippet-color-white {

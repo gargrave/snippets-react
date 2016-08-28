@@ -26,8 +26,8 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
    */
   function getStarClass() {
     return snippet.starred ?
-      'glyphicon glyphicon-star pointer snippet-control snippet-control-star' :
-      'glyphicon glyphicon-star-empty pointer snippet-control snippet-control-star';
+      'fa fa-star fa-lg pointer snippet-control snippet-control-star' :
+      'fa fa-star-o fa-lg pointer snippet-control snippet-control-star';
   }
 
   function onColorSelect(event, color) {
@@ -71,7 +71,7 @@ const SnippetListDetail = ({snippet, gotoDetailPage, onStarClick, onColorClick})
 
         {/* goto detail view button */}
         <span
-          className="glyphicon glyphicon-cog pointer snippet-control"
+          className="fa fa-ellipsis-v fa-lg pull-right pointer snippet-control"
           aria-hidden="true"
           onClick={gotoDetailPage}>
         </span>

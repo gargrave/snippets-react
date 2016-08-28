@@ -73,14 +73,14 @@ class Navbar extends React.Component {
 
                     <li className={this.getActiveClass('/account')}>
                       <Link to="/account">
-                        <span className="glyphicon glyphicon-user"></span>&nbsp; &nbsp;
+                        <span className="fa fa-user fa-lg"></span>&nbsp; &nbsp;
                         Profile
                       </Link>
                     </li>
 
                     <li>
                       <a href="" onClick={this.onLogoutClick}>
-                        <span className="glyphicon glyphicon-log-out"></span>&nbsp; &nbsp;
+                        <span className="fa fa-sign-out fa-lg"></span>&nbsp; &nbsp;
                         Logout
                       </a>
                     </li>

@@ -18,7 +18,7 @@ class SnippetDetailPage extends React.Component {
     let snippet = Object.assign({}, props.snippet);
     let snippetCopy = Object.assign({}, props.snippet);
     let archiveIconClass = snippet.archived ?
-      'glyphicon glyphicon-repeat' : 'glyphicon glyphicon-ok';
+      'fa fa-refresh fa-lg' : 'fa fa-archive fa-lg';
 
     this.state = {
       snippet, // working snippet data
@@ -213,7 +213,7 @@ class SnippetDetailPage extends React.Component {
                 className="btn btn-danger"
                 aria-label="Left Align"
                 onClick={() => this.onDeleteClick()}>
-                <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                <span className="fa fa-trash-o fa-lg" aria-hidden="true"></span>
               </span>
             </div>
 
