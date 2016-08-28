@@ -77,7 +77,9 @@ class SnippetDetailPage extends React.Component {
     this.submitUpdate();
   }
 
-  onDeleteClick() {
+  onDeleteClick(event) {
+    event.preventDefault();
+
     if (!this.state.working && confirm('Delete this snippet?')) {
       this.setState({ working: true });
       this.props.actions.remove(this.props.snippet)
@@ -198,27 +200,10 @@ class SnippetDetailPage extends React.Component {
               onSubmit={this.onSubmit}
               onCancel={this.onCancel}
               />
-            <hr/>
-
-            <div className="btn-group btn-group-justified">
-              <span
-                type="button"
-                className="btn btn-info"
-                aria-label="Left Align"
-                onClick={() => this.onArchiveClick()}>
-                <span className={this.state.archiveIconClass} aria-hidden="true"></span>
-              </span>
-              <span
-                type="button"
-                className="btn btn-danger"
-                aria-label="Left Align"
-                onClick={() => this.onDeleteClick()}>
-                <span className="fa fa-trash-o fa-lg" aria-hidden="true"></span>
-              </span>
-            </div>
-
           </div>
         </div>
+
+        <a href onClick={(e) => this.onDeleteClick(e)}>Delete this Snippet</a>
         <br/>
       </div>
     );
