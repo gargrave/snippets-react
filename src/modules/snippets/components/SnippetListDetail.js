@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 
 import snippetData from '../snippetData';
+import snippetStyles from '../helpers/snippetStyles';
 import SnippetArchiveButton from './SnippetArchiveButton';
 import SnippetColorPicker from './SnippetColorPicker';
 
@@ -12,12 +13,6 @@ const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, onColorClick, 
    *
    * @returns The style string for the top-level element
    */
-  function getMainClass() {
-    const colorClass = snippetData.isValidColor(snippet.color) ?
-      `snippet-color-${snippet.color}` :
-      'snippet-color-white';
-    return `panel panel-default snippet-panel ${colorClass}`;
-  }
 
   /**
    * Returns the full class for the star/unstar button, based on the 'starred'
@@ -36,7 +31,7 @@ const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, onColorClick, 
   }
 
   return (
-    <div className={getMainClass()}>
+    <div className={snippetStyles.snippetPanel(snippet)}>
       <div className="panel-body">
         {/* Snippet title */}
         <h4 className="snippet-title">

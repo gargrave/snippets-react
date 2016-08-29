@@ -7,6 +7,7 @@ import actions from '../snippetsActions';
 import validate from '../../../utils/validate';
 import goto from '../../../utils/goto';
 import snippetData from '../snippetData';
+import snippetStyles from '../helpers/snippetStyles';
 import SnippetForm from '../components/SnippetForm';
 
 
@@ -102,13 +103,13 @@ class SnippetsCreatePage extends React.Component {
   }
 
   render() {
-    const {apiError} = this.state;
+    const {apiError, snippet} = this.state;
     return (
       <span>
         {apiError &&
           <div className="alert alert-danger">Error: {apiError}</div>
         }
-        <div className="panel panel-default snippet-panel snippet-color-white new-snippet-form-panel">
+        <div className={snippetStyles.snippetCreatePanel()}>
 
           <div className="panel-heading">
             <h3 className="panel-title">New Snippet</h3>
@@ -116,7 +117,7 @@ class SnippetsCreatePage extends React.Component {
 
           <div className="panel-body">
             <SnippetForm
-              snippet={this.state.snippet}
+              snippet={snippet}
               working={this.state.working}
               errors={this.state.errors}
               snippetIsDirty={true}

@@ -8,6 +8,7 @@ import actions from '../snippetsActions';
 import validate from '../../../utils/validate';
 import goto from '../../../utils/goto';
 import apiHelper from '../../../utils/apiHelper';
+import snippetStyles from '../helpers/snippetStyles';
 import SnippetForm from '../components/SnippetForm';
 
 
@@ -176,14 +177,11 @@ class SnippetDetailPage extends React.Component {
     let {snippet, apiError} = this.state;
     return (
       <div>
-        <h3>Snippet Detail</h3>
-        <hr/>
-
         {apiError &&
           <div className="alert alert-danger">Error: {apiError}</div>
         }
 
-        <div className="panel panel-default">
+        <div className={snippetStyles.snippetPanel(snippet)}>
           <div className="panel-heading">
             <h4 className="panel-title">
               {this.props.snippet.title}

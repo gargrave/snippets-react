@@ -1,16 +1,6 @@
-$snippetWhite: rgb(250, 250, 250);
-$snippetRed: rgb(255, 138, 128);
-$snippetGreen: rgb(204, 255, 144);
-$snippetBlue: rgb(128, 216, 255);
-$snippetYellow: rgb(255, 255, 141);
-$snippetOrange: rgb(255, 209, 128);
-$snippetTeal: rgb(167, 255, 235);
-$snippetGray: rgb(207, 216, 220);
-
-.panel-footer {
-  border-top: 0;
-}
-
+/*=============================================
+ = Basic Snippet panel styles
+ =============================================*/
 .snippet-panel {
   .panel-body {
     padding: 10px 16px;
@@ -27,97 +17,69 @@ $snippetGray: rgb(207, 216, 220);
     }
   }
 
+  .panel-heading {
+    border-bottom: 0;
+    margin-bottom: 8px;
+  }
+
   .panel-footer {
+    border-top: 0;
     padding: 8px 4px;
   }
 }
 
-.new-snippet-panel {
+// 'add new snippet' button/link
+.new-snippet-link-panel {
   cursor: pointer;
   .panel-body {
     padding: 3px 15px;
   }
 }
 
+// panel for 'create new snippet'
 .new-snippet-form-panel {
   border: 1px solid #ccc !important;
 }
 
+/*=============================================
+ = Snippet panel coloring
+ =============================================*/
+$snippetWhite: rgb(250, 250, 250);
+$snippetRed: rgb(255, 138, 128);
+$snippetGreen: rgb(204, 255, 144);
+$snippetBlue: rgb(128, 216, 255);
+$snippetYellow: rgb(255, 255, 141);
+$snippetOrange: rgb(255, 209, 128);
+$snippetTeal: rgb(167, 255, 235);
+$snippetGray: rgb(207, 216, 220);
+
+@mixin coloredSnippetPanel($color) {
+  & > .panel-body, & > a {
+    background-color: $color;
+  }
+  & > .panel-heading, & > .panel-footer, & > a:hover {
+    background-color: desaturate(darken($color, 15), 25) !important;
+  }
+  hr {
+    border-top: 1px solid desaturate(darken($color, 15), 25) !important;
+  }
+}
+
+.snippet-color-white { @include coloredSnippetPanel($snippetWhite); }
+.snippet-color-red { @include coloredSnippetPanel($snippetRed); }
+.snippet-color-green { @include coloredSnippetPanel($snippetGreen); }
+.snippet-color-blue { @include coloredSnippetPanel($snippetBlue); }
+.snippet-color-yellow { @include coloredSnippetPanel($snippetYellow); }
+.snippet-color-orange { @include coloredSnippetPanel($snippetOrange); }
+.snippet-color-teal { @include coloredSnippetPanel($snippetTeal); }
+.snippet-color-gray { @include coloredSnippetPanel($snippetGray); }
+
+/*=============================================
+ = Snippet control styles
+ =============================================*/
 .snippet-control {
   margin: 0 14px;
   line-height: inherit;
-}
-
-.snippet-color-white {
-  & > .panel-body, & > a {
-    background-color: $snippetWhite;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetWhite, 10), 20) !important;
-  }
-}
-
-.snippet-color-red {
-  & > .panel-body, & > a {
-    background-color: $snippetRed;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetRed, 15), 25) !important;
-  }
-}
-
-.snippet-color-green {
-  & > .panel-body, & > a {
-    background-color: $snippetGreen;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetGreen, 15), 25) !important;
-  }
-}
-
-.snippet-color-blue {
-  & > .panel-body, & > a {
-    background-color: $snippetBlue;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetBlue, 15), 25) !important;
-  }
-}
-
-.snippet-color-yellow {
-  & > .panel-body, & > a {
-    background-color: $snippetYellow;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetYellow, 15), 25) !important;
-  }
-}
-
-.snippet-color-orange {
-  & > .panel-body, & > a {
-    background-color: $snippetOrange
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetOrange, 15), 25) !important;
-  }
-}
-
-.snippet-color-teal {
-  & > .panel-body, & > a {
-    background-color: $snippetTeal;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetTeal, 15), 25) !important;
-  }
-}
-
-.snippet-color-gray {
-  & > .panel-body, & > a {
-    background-color: $snippetGray;
-  }
-  & > .panel-heading, & > .panel-footer, & > a:hover {
-    background-color: desaturate(darken($snippetGray, 10), 20) !important;
-  }
 }
 
 .color-picker-item > a {
