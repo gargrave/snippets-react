@@ -104,26 +104,29 @@ class SnippetsCreatePage extends React.Component {
   render() {
     const {apiError} = this.state;
     return (
-      <div>
-        <h2>
-          Create a Snippet
-        </h2>
-        <hr/>
-
+      <span>
         {apiError &&
           <div className="alert alert-danger">Error: {apiError}</div>
         }
+        <div className="panel panel-default snippet-panel snippet-color-white new-snippet-form-panel">
 
-        <SnippetForm
-          snippet={this.state.snippet}
-          working={this.state.working}
-          errors={this.state.errors}
-          snippetIsDirty={true}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          onCancel={this.onCancel}
-        />
-      </div>
+          <div className="panel-heading">
+            <h3 className="panel-title">New Snippet</h3>
+          </div>
+
+          <div className="panel-body">
+            <SnippetForm
+              snippet={this.state.snippet}
+              working={this.state.working}
+              errors={this.state.errors}
+              snippetIsDirty={true}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              onCancel={this.onCancel}
+            />
+          </div>
+        </div>
+      </span>
     );
   }
 }
