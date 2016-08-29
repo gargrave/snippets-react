@@ -5,7 +5,7 @@ import SnippetArchiveButton from './SnippetArchiveButton';
 import SnippetColorPicker from './SnippetColorPicker';
 
 
-const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, gotoDetailPage}) => {
+const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
   /**
    * Builds and returns the style string for the top-level element, including the color
    * of the Snippet panel, based on teh Snippet's 'color' property
@@ -32,7 +32,7 @@ const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, gotoDetailPage
   }
 
   function onColorSelect(event, color) {
-    this.props.onColorClick(event, snippet, color);
+    onColorClick(event, snippet, color);
   }
 
   return (
