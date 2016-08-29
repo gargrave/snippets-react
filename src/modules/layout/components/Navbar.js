@@ -19,7 +19,6 @@ class Navbar extends React.Component {
   }
 
   getNavbarBrandText() {
-    //{APP_TITLE}&nbsp;&nbsp;>&nbsp;&nbsp;Starred
     let path = '';
     let loc = this.props.location.pathname;
     if (loc.includes('filter/starred')) {

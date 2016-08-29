@@ -24,10 +24,7 @@ class App extends React.Component {
 
           <aside className="col-md-2 col-md-offset-1 hidden-sm hidden-xs">
             <div className="row">
-              <SideNav
-                location={this.props.location}
-                loggedIn={!!this.props.user.email}
-              />
+              <SideNav />
             </div>
           </aside>
 
