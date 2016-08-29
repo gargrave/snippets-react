@@ -43,3 +43,8 @@ export const UPDATE_SNIPPET_ERROR = 'UPDATE_SNIPPET_ERROR';
 export const DELETE_SNIPPET_BEGIN = 'DELETE_SNIPPETS_BEGIN';
 export const DELETE_SNIPPET_SUCCESS = 'DELETE_SNIPPET_SUCCESS';
 export const DELETE_SNIPPET_ERROR = 'DELETE_SNIPPET_ERROR';
+
+/*=============================================
+ = UI Actions
+ =============================================*/
+ export const TOGGLE_COLLAPSE_VIEW = 'TOGGLE_COLLAPSE_VIEW';

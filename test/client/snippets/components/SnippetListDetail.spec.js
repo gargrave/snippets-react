@@ -25,6 +25,7 @@ let snippet = {
 describe('<SnippetListDetail />', () => {
   const props = {
     snippet,
+    collapsedView: false,
     gotoDetailPage: sinon.spy(),
     onStarClick: sinon.spy(),
     onArchiveClick: sinon.spy(),

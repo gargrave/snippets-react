@@ -1,16 +1,24 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {Link, IndexLink} from 'react-router';
+
+import actions from '../uiActions';
 
 
 class SideNav extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   onExpandCollapse(e) {
     e.preventDefault();
-    console.log('onExpandCollapse');
+
+    this.props.actions.toggleCollapseView();
   }
 
   render(){
-    const {loggedIn} = this.props;
+    const {loggedIn, collapsed} = this.props;
     return (
       <div>
         <h4>Navigation</h4>
@@ -49,17 +57,21 @@ class SideNav extends Component {
 }
 
 SideNav.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
+  collapsed: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    loggedIn: !!state.user.email
+    loggedIn: !!state.user.email,
+    collapsed: state.ui.collapsed
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators(actions, dispatch)
   };
 }
 

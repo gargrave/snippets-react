@@ -121,6 +121,7 @@ export class SnippetsListPage extends React.Component {
    =============================================*/
   render() {
     let {apiError} = this.state;
+    let {collapsedView} = this.props;
     return (
       <div>
         {apiError &&
@@ -133,6 +134,7 @@ export class SnippetsListPage extends React.Component {
           <SnippetListDetail
             key={snippet.id}
             snippet={snippet}
+            collapsedView={collapsedView || false}
             gotoDetailPage={() => this.gotoDetailPage(snippet.id)}
             onStarClick={(e) => this.onStarClick(e, snippet)}
             onArchiveClick={(e) => this.onArchiveClick(e, snippet)}
@@ -149,6 +151,7 @@ SnippetsListPage.propTypes = {
   actions: PropTypes.object.isRequired,
   snippets: PropTypes.array.isRequired,
   filterBy: PropTypes.string,
+  collapsedView: PropTypes.bool,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -171,7 +174,8 @@ function mapStateToProps(state, ownProps) {
   return {
     loggedIn: !!state.user.email,
     snippets,
-    filterBy
+    filterBy,
+    collapsedView: state.ui.collapsed
   };
 }
 

@@ -28,6 +28,9 @@ const store = mockStore({
   user: {
     email: 'something@somewhere.com'
   },
+  ui: {
+    collapsed: false
+  },
   snippets: mockSnippets
 });
 

@@ -6,7 +6,7 @@ import SnippetArchiveButton from './SnippetArchiveButton';
 import SnippetColorPicker from './SnippetColorPicker';
 
 
-const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
+const SnippetListDetail = ({snippet, collapsedView, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
   /**
    * Builds and returns the style string for the top-level element, including the color
    * of the Snippet panel, based on teh Snippet's 'color' property
@@ -45,13 +45,15 @@ const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, onColorClick, 
         </h4>
 
         {/* Snippet URL */}
-        <a
-          href={snippet.url}
-          className="text-muted snippet-url"
-          target="_blank"
-          rel="noopener noreferrer">
-          {snippet.url}
-        </a>
+        {!collapsedView &&
+          <a
+            href={snippet.url}
+            className="text-muted snippet-url"
+            target="_blank"
+            rel="noopener noreferrer">
+            {snippet.url}
+          </a>
+        }
       </div>
 
       <div className="panel-footer snippet-controls">
@@ -85,6 +87,7 @@ const SnippetListDetail = ({snippet, onStarClick, onArchiveClick, onColorClick, 
 
 SnippetListDetail.propTypes = {
   snippet: PropTypes.object.isRequired,
+  collapsedView: PropTypes.bool.isRequired,
   gotoDetailPage: PropTypes.func.isRequired,
   onStarClick: PropTypes.func.isRequired,
   onArchiveClick: PropTypes.func.isRequired,
