@@ -14,7 +14,7 @@ describe('<NewSnippetPanel />', () => {
 
   it('should have one main element with the appropriate class', () => {
     const wrapper = shallow(<NewSnippetPanel {...props} />);
-    const mainNode = wrapper.find('.new-snippet-panel');
+    const mainNode = wrapper.find('.new-snippet-link-panel');
 
     expect(mainNode).to.have.length(1);
   });
