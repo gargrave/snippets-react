@@ -12,9 +12,9 @@ require('./favicon.ico');
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import './styles/styles.scss';
 import './styles/jasny-bootstrap.min.css';
 import './styles/jasny-bootstrap.min.js';
+import './styles/styles.scss';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 

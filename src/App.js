@@ -7,6 +7,7 @@ import bootstrap from 'bootstrap';
 import FirebaseContainer from './modules/firebase/FirebaseContainer';
 import Navbar from './modules/layout/components/Navbar';
 import SideNav from './modules/layout/components/SideNav';
+import SlideInNavMenu from './modules/layout/components/SlideInNavMenu';
 
 
 class App extends React.Component {
@@ -15,25 +16,20 @@ class App extends React.Component {
       <div>
 
         <FirebaseContainer />
+
+        <SlideInNavMenu />
+
         <Navbar
           user={this.props.user}
           location={this.props.location}
         />
 
         <div className="container-fluid">
-
-          <aside className="col-md-2 col-md-offset-1 hidden-sm hidden-xs">
-            <div className="row">
-              <SideNav />
-            </div>
-          </aside>
-
-          <main className="col-md-8">
-            <div className="row">
+          <main className="row">
+            <div className="col-xs-12 main-content-area">
               {this.props.children}
             </div>
           </main>
-
         </div>
       </div>
     );
