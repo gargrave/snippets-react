@@ -23,7 +23,7 @@ class SlideInNavMenu extends Component {
   render() {
     const {user} = this.props;
     return (
-      <aside className="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+      <aside className="navmenu navmenu-default navmenu-fixed-left offcanvas-xs">
 
         {!user.email &&
           <ul className="nav navmenu-nav">
