@@ -135,17 +135,30 @@ class CreateAccountPage extends React.Component {
    = Render
    ==============================================*/
   render() {
+    const {apiError} = this.state;
     return (
       <div>
-        <CreateUserForm
-          working={this.state.working}
-          user={this.state.userData}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          onGotoLogin={this.redirectToLoginPage}
-          errors={this.state.errors}
-          apiError={this.state.apiError}
-          />
+        {apiError &&
+          <div className="alert alert-danger">{apiError}</div>
+        }
+        <div className="panel panel-default snippet-panel">
+
+          <div className="panel-heading">
+            <h3 className="panel-title">New Account</h3>
+          </div>
+
+          <div className="panel-body">
+            <CreateUserForm
+              working={this.state.working}
+              user={this.state.userData}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              onGotoLogin={this.redirectToLoginPage}
+              errors={this.state.errors}
+              apiError={this.state.apiError}
+            />
+          </div>
+        </div>
       </div>
     );
   }

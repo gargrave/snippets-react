@@ -125,16 +125,30 @@ class LoginPage extends React.Component {
    = Render
    ==============================================*/
   render() {
+    const {apiError} = this.state;
     return (
       <div>
-        <LoginForm
-          working={this.state.working}
-          user={this.state.loginUser}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          errors={this.state.errors}
-          apiError={this.state.apiError}
-          />
+        {apiError &&
+          <div className="alert alert-danger">{apiError}</div>
+        }
+
+        <div className="panel panel-default snippet-panel">
+
+          <div className="panel-heading">
+            <h3 className="panel-title">Login</h3>
+          </div>
+
+          <div className="panel-body">
+            <LoginForm
+              working={this.state.working}
+              user={this.state.loginUser}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              errors={this.state.errors}
+              apiError={this.state.apiError}
+            />
+          </div>
+        </div>
       </div>
     );
   }

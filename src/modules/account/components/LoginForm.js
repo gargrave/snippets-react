@@ -1,20 +1,18 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
 
+import goto from '../../../utils/goto';
 import TextInput from '../../common/components/TextInput';
 import PasswordInput from '../../common/components/PasswordInput';
 
 
-const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
+const LoginForm = ({working, user, onChange, onSubmit, errors}) => {
+  function onSignupClick(event) {
+    event.preventDefault();
+    goto.route('/account/create');
+  }
+
   return (
     <div>
-      <h3>Login</h3>
-      <hr/>
-
-      {apiError &&
-        <div className="alert alert-danger">{apiError}</div>
-      }
-
       <form>
         <TextInput
           label="Email"
@@ -23,7 +21,7 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           name="email"
           onChange={onChange}
           error={errors.email}
-          />
+        />
 
         <PasswordInput
           label="Password"
@@ -32,7 +30,7 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           name="pass"
           onChange={onChange}
           error={errors.password}
-          />
+        />
 
         <input
           type="submit"
@@ -40,11 +38,14 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           className="btn btn-primary"
           onClick={onSubmit}
           disabled={working}
-          />&nbsp;
-      </form>
-      <hr/>
+        />&nbsp;
 
-      <Link to="/account/create">New users click here</Link>
+        <span
+          className="btn btn-default pull-right"
+          onClick={(e) => onSignupClick(e)}>
+          Sign Up
+        </span>
+      </form>
     </div>
   );
 };
@@ -55,7 +56,6 @@ LoginForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  apiError: PropTypes.string.isRequired
 };
 
 export default LoginForm;

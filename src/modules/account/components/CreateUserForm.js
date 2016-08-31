@@ -1,20 +1,18 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
 
+import goto from '../../../utils/goto';
 import TextInput from '../../common/components/TextInput';
 import PasswordInput from '../../common/components/PasswordInput';
 
 
-const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
+const CreateUserForm = ({working, user, onChange, onSubmit, errors}) => {
+  function onLoginClick(event) {
+    event.preventDefault();
+    goto.route('/account/login');
+  }
+
   return (
     <div>
-      <h3>Create an Account</h3>
-      <hr/>
-
-      {apiError &&
-        <div className="alert alert-danger">{apiError}</div>
-      }
-
       <form>
         <TextInput
           label="Email"
@@ -23,7 +21,7 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           name="email"
           onChange={onChange}
           error={errors.email}
-          />
+        />
 
         <TextInput
           label="Confirm Email"
@@ -32,7 +30,7 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           name="emailConfirm"
           onChange={onChange}
           error={errors.emailConfirm}
-          />
+        />
 
         <PasswordInput
           label="Password"
@@ -41,7 +39,7 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           name="pass"
           onChange={onChange}
           error={errors.password}
-          />
+        />
 
         <PasswordInput
           label="Confirm Password"
@@ -50,7 +48,7 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           name="passConfirm"
           onChange={onChange}
           error={errors.passwordConfirm}
-          />
+        />
 
         <input
           type="submit"
@@ -58,23 +56,25 @@ const LoginForm = ({working, user, onChange, onSubmit, errors, apiError}) => {
           className="btn btn-success"
           onClick={onSubmit}
           disabled={working}
-          />&nbsp;
-      </form>
-      <hr/>
+        />&nbsp;
 
-      <Link to="/account/login">Existing users click here</Link>
+        <span
+          className="btn btn-default pull-right"
+          onClick={(e) => onLoginClick(e)}>
+          Login
+        </span>
+      </form>
     </div>
   );
 };
 
-LoginForm.propTypes = {
+CreateUserForm.propTypes = {
   working: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onGotoLogin: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  apiError: PropTypes.string.isRequired
 };
 
-export default LoginForm;
+export default CreateUserForm;
