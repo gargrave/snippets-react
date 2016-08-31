@@ -7,6 +7,10 @@ import uiActions from '../uiActions';
 
 
 class SlideInNavMenu extends Component {
+  getActiveClass(path) {
+    return path == location.pathname ? 'active' : '';
+  }
+
   onExpandCollapse(e) {
     e.preventDefault();
     this.props.uiActions.toggleCollapseView();
@@ -24,17 +28,27 @@ class SlideInNavMenu extends Component {
         {!user.email &&
           <ul className="nav navmenu-nav">
             <li><h4>Account</h4></li>
-            <li><Link to="/account/login">Login</Link></li>
-            <li><Link to="/account/create">New Account</Link></li>
+            <li className={this.getActiveClass('/account/login')}>
+              <Link to="/account/login">Login</Link>
+            </li>
+            <li className={this.getActiveClass('/account/create')}>
+              <Link to="/account/create">New Account</Link>
+            </li>
           </ul>
         }
 
         {!!user.email &&
           <ul className="nav navmenu-nav">
             <li><h4>Navigation</h4></li>
-            <li className="active"><Link to="/snippets">My Snippets</Link></li>
-            <li><Link to="/snippets/filter/starred">Starred</Link></li>
-            <li><Link to="/snippets/filter/archived">Archived</Link></li>
+            <li className={this.getActiveClass('/snippets')}>
+              <Link to="/snippets">My Snippets</Link>
+            </li>
+            <li className={this.getActiveClass('/snippets/filter/starred')}>
+              <Link to="/snippets/filter/starred">Starred</Link>
+            </li>
+            <li className={this.getActiveClass('/snippets/filter/archived')}>
+              <Link to="/snippets/filter/archived">Archived</Link>
+            </li>
           </ul>
         }
         {!!user.email &&
@@ -43,11 +57,12 @@ class SlideInNavMenu extends Component {
             <li><a href="#" onClick={(e) => this.onExpandCollapse(e)}>Expand/Collapse</a></li>
           </ul>
         }
+        <hr/>
         {!!user.email &&
           <ul className="nav navmenu-nav">
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                <strong>{user.email}</strong> <b className="caret"></b>
+                {user.email} <b className="caret"></b>
               </a>
 
               <ul className="dropdown-menu navmenu-nav">
@@ -76,6 +91,7 @@ SlideInNavMenu.propTypes = {
   user: PropTypes.object.isRequired,
   collapsed: PropTypes.bool.isRequired,
   uiActions: PropTypes.object.isRequired,
+  location: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {

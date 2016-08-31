@@ -17,7 +17,9 @@ class App extends React.Component {
 
         <FirebaseContainer />
 
-        <SlideInNavMenu />
+        <SlideInNavMenu
+          location={this.props.location}
+        />
 
         <Navbar
           user={this.props.user}
