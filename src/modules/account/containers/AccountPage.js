@@ -159,30 +159,39 @@ class AccountPage extends React.Component {
    ==============================================*/
   render() {
     const {editing, apiError} = this.state;
+    const {user} = this.props;
+
     return (
       <div>
         {/* user info display (i.e. non-editing state) */}
         {!editing &&
-          <section>
-            <UserInfo
-              user={this.props.user}
-              profile={this.state.profile}
+          <div className="panel panel-default snippet-panel">
+
+            <div className="panel-heading">
+              <h3 className="panel-title">{user.email}</h3>
+            </div>
+
+            <div className="panel-body">
+              <UserInfo
+                user={this.props.user}
+                profile={this.state.profile}
               />
 
-            <button
-              className="btn btn-primary"
-              onClick={this.onUpdateClick}
-              disabled={this.state.working}>
-              Update
-            </button>&nbsp;
+              <button
+                className="btn btn-primary"
+                onClick={this.onUpdateClick}
+                disabled={this.state.working}>
+                Update
+              </button>&nbsp;
 
-            <button
-              className="btn btn-default"
-              onClick={this.onSignout}
-              disabled={this.state.working}>
-              Logout
-            </button>
-          </section>
+              <button
+                className="btn btn-default"
+                onClick={this.onSignout}
+                disabled={this.state.working}>
+                Logout
+              </button>
+            </div>
+          </div>
         }
 
         {/* user edit form (i.e. editing state) */}

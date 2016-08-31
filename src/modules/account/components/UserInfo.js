@@ -4,8 +4,6 @@ import React, {PropTypes} from 'react';
 const UserInfo = ({user, profile}) => {
   return (
     <div>
-      <h3>{user.email}</h3>
-      <hr/>
       <ul className="list-group">
         <li className="list-group-item">
           <strong>Name: </strong>
