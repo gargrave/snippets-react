@@ -1,7 +1,10 @@
+$panelMaxWidth: 550px;
+
 /*=============================================
  = Basic Snippet panel styles
  =============================================*/
 .snippet-panel {
+  max-width: $panelMaxWidth;
   margin-left: auto;
   margin-right: auto;
 
@@ -92,4 +95,9 @@ $snippetGray: rgb(207, 216, 220);
 .dropdown-menu.color-picker-list {
   padding: 0;
   margin: 0;
+}
+
+.snippets-hr {
+  border-top: 2px solid #aaa !important;
+  max-width: $panelMaxWidth;
 }

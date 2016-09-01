@@ -3,10 +3,11 @@ import React, {PropTypes} from 'react';
 import snippetData from '../snippetData';
 import snippetStyles from '../helpers/snippetStyles';
 import SnippetArchiveButton from './SnippetArchiveButton';
+import SnippetPinButton from './SnippetPinButton';
 import SnippetColorPicker from './SnippetColorPicker';
 
 
-const SnippetListDetail = ({snippet, collapsedView, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
+const SnippetListDetail = ({snippet, collapsedView, onPinClick, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
   /**
    * Builds and returns the style string for the top-level element, including the color
    * of the Snippet panel, based on teh Snippet's 'color' property
@@ -57,6 +58,12 @@ const SnippetListDetail = ({snippet, collapsedView, onStarClick, onArchiveClick,
       </div>
 
       <div className="panel-footer snippet-controls">
+        {/* pin/unpin button */}
+        <SnippetPinButton
+          snippet={snippet}
+          onPinClick={onPinClick}
+        />
+
         {/* star/unstar button */}
         <span
           className={getStarClass()}
@@ -89,6 +96,7 @@ SnippetListDetail.propTypes = {
   snippet: PropTypes.object.isRequired,
   collapsedView: PropTypes.bool.isRequired,
   gotoDetailPage: PropTypes.func.isRequired,
+  onPinClick: PropTypes.func.isRequired,
   onStarClick: PropTypes.func.isRequired,
   onArchiveClick: PropTypes.func.isRequired,
   onColorClick: PropTypes.func.isRequired,

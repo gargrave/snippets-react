@@ -17,6 +17,7 @@ export let snippets = {
       url: 'http://www.artofmanliness.com/2013/10/08/keep-your-house-in-tip-top-shape-an-incredibly-handy-home-maintenance-checklist/',
       archived: false,
       starred: false,
+      pinned: false,
       color: 'yellow',
       created: 1471887308405,
       modified: 1472077052124
@@ -26,6 +27,7 @@ export let snippets = {
       url: 'https://connect.secure.wellsfargo.com/auth/logout?origin=irt&code=7101',
       archived: false,
       starred: true,
+      pinned: false,
       color: 'red',
       created: 1471887834198,
       modified: 1472170524220
@@ -35,6 +37,7 @@ export let snippets = {
       url: 'https://lodash.com/docs',
       archived: true,
       starred: false,
+      pinned: false,
       color: 'blue',
       created: 1471887885989,
       modified: 1472077498463
@@ -44,6 +47,7 @@ export let snippets = {
       url: 'http://tutorialzine.com/2016/08/15-interesting-javascript-and-css-libraries-for-august-2016/',
       archived: false,
       starred: false,
+      pinned: true,
       color: '',
       created: 1471888006416,
       modified: 1472077028924
@@ -53,6 +57,7 @@ export let snippets = {
       url: 'https://github.com/coryhouse/react-slingshot/blob/master/src/components/FuelSavingsForm.spec.js',
       archived: false,
       starred: true,
+      pinned: false,
       color: 'blue',
       created: 1471888057563,
       modified: 1472077041836
@@ -62,6 +67,7 @@ export let snippets = {
       url: 'https://github.com/coryhouse/react-slingshot/blob/master/src/components/FuelSavingsForm.spec.js',
       archived: false,
       starred: false,
+      pinned: false,
       color: 'blue',
       created: 1471887885989,
       modified: 1472077498463
@@ -71,6 +77,7 @@ export let snippets = {
       url: 'https://education.github.com/pack',
       archived: false,
       starred: false,
+      pinned: false,
       color: 'teal',
       created: 1472674051955,
       modified: 1472674054604
@@ -80,6 +87,7 @@ export let snippets = {
       url: 'https://app.pluralsight.com/paths/skill/node-js',
       archived: false,
       starred: false,
+      pinned: false,
       color: 'orange',
       created: 1472681343657,
       modified: 1472752873367

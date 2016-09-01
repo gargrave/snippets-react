@@ -89,6 +89,14 @@ export class SnippetsListPage extends React.Component {
   /*=============================================
    = action handlers
    =============================================*/
+  onPinClick(event, _snippet) {
+    event.preventDefault();
+
+    let snippet = Object.assign({}, _snippet);
+    snippet.pinned = !snippet.pinned;
+    this.submitUpdate(snippet);
+  }
+
   onStarClick(event, _snippet) {
     event.preventDefault();
 
@@ -102,7 +110,7 @@ export class SnippetsListPage extends React.Component {
 
     let snippet = Object.assign({}, _snippet);
     snippet.archived = !snippet.archived;
-    this.submitUpdate(snippet, false);
+    this.submitUpdate(snippet);
   }
 
   onColorClick(event, _snippet, color) {
@@ -130,12 +138,27 @@ export class SnippetsListPage extends React.Component {
 
         <NewSnippetPanel onPanelClick={() => this.gotoCreatePage()} />
 
-        {this.props.snippets.map(snippet =>
+        {this.props.pinnedSnippets.map((snippet) =>
           <SnippetListDetail
             key={snippet.id}
             snippet={snippet}
             collapsedView={collapsedView || false}
             gotoDetailPage={() => this.gotoDetailPage(snippet.id)}
+            onPinClick={(e) => this.onPinClick(e, snippet)}
+            onStarClick={(e) => this.onStarClick(e, snippet)}
+            onArchiveClick={(e) => this.onArchiveClick(e, snippet)}
+            onColorClick={this.onColorClick.bind(this)}
+          />
+        )}
+        {!!this.props.pinnedSnippets.length && <hr className="snippets-hr"/>}
+
+        {this.props.snippets.map((snippet) =>
+          <SnippetListDetail
+            key={snippet.id}
+            snippet={snippet}
+            collapsedView={collapsedView || false}
+            gotoDetailPage={() => this.gotoDetailPage(snippet.id)}
+            onPinClick={(e) => this.onPinClick(e, snippet)}
             onStarClick={(e) => this.onStarClick(e, snippet)}
             onArchiveClick={(e) => this.onArchiveClick(e, snippet)}
             onColorClick={this.onColorClick.bind(this)}
@@ -150,6 +173,7 @@ SnippetsListPage.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   snippets: PropTypes.array.isRequired,
+  pinnedSnippets: PropTypes.array.isRequired,
   filterBy: PropTypes.string,
   collapsedView: PropTypes.bool,
 };
@@ -157,23 +181,33 @@ SnippetsListPage.propTypes = {
 function mapStateToProps(state, ownProps) {
   let filterBy = ownProps.params.filterBy;
   let snippets;
+  let pinnedSnippets = [];
 
 
   switch (filterBy) {
     case 'archived':
-      snippets = state.snippets.filter(s => s.archived);
+      snippets = state.snippets
+        .filter(s => s.archived)
+        .sort((a, b) => a.created > b.created ? -1 : 1 );
       break;
     case 'starred':
-      snippets = state.snippets.filter(s => s.starred);
+      snippets = state.snippets
+        .filter(s => s.starred)
+        .sort((a, b) => a.created > b.created ? -1 : 1 );
       break;
     default:
-      snippets = state.snippets.filter(s => !s.archived);
+      snippets = state.snippets
+        .filter(s => !s.archived && !s.pinned)
+        .sort((a, b) => a.created > b.created ? -1 : 1);
+      pinnedSnippets = state.snippets
+        .filter(s => !s.archived && s.pinned)
+        .sort((a, b) => a.modified > b.modified ? -1 : 1);
   }
-  snippets.sort((a, b) => a.created < b.created ? 1 : -1 );
 
   return {
     loggedIn: !!state.user.email,
     snippets,
+    pinnedSnippets,
     filterBy,
     collapsedView: state.ui.collapsed
   };

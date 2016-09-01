@@ -8,6 +8,7 @@ export default {
       url: '',
       archived: false,
       starred: false,
+      pinned: false,
       color: 'white',
       created: dateNow.getTime(),
       modified: dateNow.getTime()
@@ -21,6 +22,7 @@ export default {
       url: record.url ? record.url.trim() : '',
       archived: record.archived || false,
       starred: record.starred || false,
+      pinned: record.pinned || false,
       color: record.color ? record.color.trim() : 'white',
       created: dateNow.getTime(),
       modified: dateNow.getTime()
