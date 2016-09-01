@@ -101,4 +101,19 @@ describe('<SnippetListDetail />', () => {
 
     expect(archiveNode).to.have.length(1);
   });
+
+  it ('should contain the full view when "collapsedView" is false', () => {
+    const wrapper = shallow(<SnippetListDetail {...props} />);
+    const urlNode = wrapper.find('.snippet-url');
+
+    expect(urlNode).to.have.length(1);
+  });
+
+  it ('should not contain the full view when "collapsedView" is true', () => {
+    props.collapsedView = true;
+    const wrapper = shallow(<SnippetListDetail {...props} />);
+    const urlNode = wrapper.find('.snippet-url');
+
+    expect(urlNode).to.have.length(0);
+  });
 });
