@@ -17,18 +17,18 @@ export let snippets = {
       url: 'http://www.artofmanliness.com/2013/10/08/keep-your-house-in-tip-top-shape-an-incredibly-handy-home-maintenance-checklist/',
       archived: false,
       starred: false,
-      color: '',
-      created: timestamp,
-      modified: timestamp
+      color: 'yellow',
+      created: 1471887308405,
+      modified: 1472077052124
     },
     '1': {
       title: 'My Retirement Plan',
       url: 'https://connect.secure.wellsfargo.com/auth/logout?origin=irt&code=7101',
       archived: false,
       starred: true,
-      color: 'orange',
-      created: timestamp,
-      modified: timestamp + 10
+      color: 'red',
+      created: 1471887834198,
+      modified: 1472170524220
     },
     '2': {
       title: 'Lodash Docs',
@@ -36,17 +36,17 @@ export let snippets = {
       archived: true,
       starred: false,
       color: 'blue',
-      created: timestamp,
-      modified: timestamp
+      created: 1471887885989,
+      modified: 1472077498463
     },
     '3': {
       title: '15 Interesting JavaScript and CSS Libraries',
       url: 'http://tutorialzine.com/2016/08/15-interesting-javascript-and-css-libraries-for-august-2016/',
       archived: false,
       starred: false,
-      color: 'blue',
-      created: timestamp,
-      modified: timestamp - 10
+      color: '',
+      created: 1471888006416,
+      modified: 1472077028924
     },
     '4': {
       title: 'Example: Testing in React/Slingshot',
@@ -54,8 +54,35 @@ export let snippets = {
       archived: false,
       starred: true,
       color: 'blue',
-      created: timestamp,
-      modified: timestamp + 20
+      created: 1471888057563,
+      modified: 1472077041836
+    },
+    '-KPnLgQZ-Ve1__dLN7-J': {
+      title: 'Example: Testing in React/Slingshot',
+      url: 'https://github.com/coryhouse/react-slingshot/blob/master/src/components/FuelSavingsForm.spec.js',
+      archived: false,
+      starred: false,
+      color: 'blue',
+      created: 1471887885989,
+      modified: 1472077498463
+    },
+    '-KQXCfXe0eskbJ_sGbA-': {
+      title: 'GitHub Student Pack',
+      url: 'https://education.github.com/pack',
+      archived: false,
+      starred: false,
+      color: 'teal',
+      created: 1472674051955,
+      modified: 1472674054604
+    },
+    '-KQXdUeOXr7Pa_cl_JW_': {
+      title: 'NodeJS Path @ Pluralsight',
+      url: 'https://app.pluralsight.com/paths/skill/node-js',
+      archived: false,
+      starred: false,
+      color: 'orange',
+      created: 1472681343657,
+      modified: 1472752873367
     }
   }
 };
