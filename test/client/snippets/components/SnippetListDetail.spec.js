@@ -27,6 +27,7 @@ describe('<SnippetListDetail />', () => {
     snippet,
     collapsedView: false,
     gotoDetailPage: sinon.spy(),
+    onPinClick: sinon.spy(),
     onStarClick: sinon.spy(),
     onArchiveClick: sinon.spy(),
     onColorClick: sinon.spy()
@@ -55,6 +56,10 @@ describe('<SnippetListDetail />', () => {
     expect(wrapper.is('.snippet-color-white')).to.equal(true); // default color when no value is passed in
   });
 
+
+  /*=============================================
+   = color tests
+   =============================================*/
   it('should correctly display a Snippet with correct color classes', () => {
     snippet.color = 'red';
     const wrapper = shallow(<SnippetListDetail {...props} />);
@@ -69,6 +74,9 @@ describe('<SnippetListDetail />', () => {
     expect(wrapper.is('.snippet-color-white')).to.equal(true); // default color with invalid color value
   });
 
+  /*=============================================
+   = 'starred' property tests
+   =============================================*/
   it('should show non-starred icon when Snippet is not starred and should process clicks', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
     const starNode = wrapper.find('.fa-star-o');
@@ -88,6 +96,16 @@ describe('<SnippetListDetail />', () => {
     expect(props.onStarClick).to.have.property('callCount', 2);
   });
 
+  /*=============================================
+   = child component tests
+   =============================================*/
+   it('should have a SnippetPinButton', () => {
+    const wrapper = shallow(<SnippetListDetail {...props} />);
+    const pinnedNode = wrapper.find('SnippetPinButton');
+
+    expect(pinnedNode).to.have.length(1);
+  });
+
   it('should have a SnippetColorPicker', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
     const colorNode = wrapper.find('SnippetColorPicker');
@@ -102,6 +120,9 @@ describe('<SnippetListDetail />', () => {
     expect(archiveNode).to.have.length(1);
   });
 
+  /*=============================================
+   = 'collapsed' tests
+   =============================================*/
   it ('should contain the full view when "collapsedView" is false', () => {
     const wrapper = shallow(<SnippetListDetail {...props} />);
     const urlNode = wrapper.find('.snippet-url');

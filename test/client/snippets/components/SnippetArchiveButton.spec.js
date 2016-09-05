@@ -35,11 +35,11 @@ describe('<SnippetArchiveButton />', () => {
   it('should display the "refresh" button when snippet is archived', () => {
     props.snippet.archived = true;
     const wrapper = shallow(<SnippetArchiveButton {...props} />);
-    const desiredNode = wrapper.find('.fa-archive');
-    const undesiredNode = wrapper.find('.fa-refresh');
+    const desiredNode = wrapper.find('.fa-refresh');
+    const undesiredNode = wrapper.find('.fa-archive');
 
-    expect(desiredNode).to.have.length(0);
-    expect(undesiredNode).to.have.length(1);
+    expect(desiredNode).to.have.length(1);
+    expect(undesiredNode).to.have.length(0);
   });
 
   it('should call the click handler', () => {
