@@ -110,6 +110,9 @@ export class SnippetsListPage extends React.Component {
 
     let snippet = Object.assign({}, _snippet);
     snippet.archived = !snippet.archived;
+    if (snippet.archived) {
+      snippet.pinned = false;
+    }
     this.submitUpdate(snippet);
   }
 
