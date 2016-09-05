@@ -43,6 +43,7 @@ describe('<SnippetsListPage />', () => {
         loggedIn={true}
         actions={actions}
         snippets={mockSnippets}
+        pinnedSnippets={[]}
         filterBy={''}
       />
     );
