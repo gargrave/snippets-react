@@ -9,13 +9,6 @@ import SnippetColorPicker from './SnippetColorPicker';
 
 const SnippetListDetail = ({snippet, collapsedView, onPinClick, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
   /**
-   * Builds and returns the style string for the top-level element, including the color
-   * of the Snippet panel, based on teh Snippet's 'color' property
-   *
-   * @returns The style string for the top-level element
-   */
-
-  /**
    * Returns the full class for the star/unstar button, based on the 'starred'
    * state of the supplied Snippet.
    *
