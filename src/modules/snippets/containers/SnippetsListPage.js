@@ -128,7 +128,7 @@ export class SnippetsListPage extends React.Component {
    = Render
    =============================================*/
   render() {
-    let {apiError} = this.state;
+    let {apiError, fullListView} = this.state;
     let {collapsedView} = this.props;
     return (
       <div>
@@ -148,6 +148,7 @@ export class SnippetsListPage extends React.Component {
             onStarClick={(e) => this.onStarClick(e, snippet)}
             onArchiveClick={(e) => this.onArchiveClick(e, snippet)}
             onColorClick={this.onColorClick.bind(this)}
+            hidePinButton={!fullListView}
           />
         )}
         {!!this.props.pinnedSnippets.length && <hr className="snippets-hr"/>}
@@ -162,6 +163,7 @@ export class SnippetsListPage extends React.Component {
             onStarClick={(e) => this.onStarClick(e, snippet)}
             onArchiveClick={(e) => this.onArchiveClick(e, snippet)}
             onColorClick={this.onColorClick.bind(this)}
+            hidePinButton={!fullListView}
           />
         )}
       </div>

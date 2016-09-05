@@ -7,7 +7,11 @@ import SnippetPinButton from './SnippetPinButton';
 import SnippetColorPicker from './SnippetColorPicker';
 
 
-const SnippetListDetail = ({snippet, collapsedView, onPinClick, onStarClick, onArchiveClick, onColorClick, gotoDetailPage}) => {
+const SnippetListDetail = ({
+  snippet, collapsedView, onPinClick, onStarClick,
+  onArchiveClick, onColorClick, gotoDetailPage,
+  hidePinButton
+}) => {
   /**
    * Returns the full class for the star/unstar button, based on the 'starred'
    * state of the supplied Snippet.
@@ -52,10 +56,12 @@ const SnippetListDetail = ({snippet, collapsedView, onPinClick, onStarClick, onA
 
       <div className="panel-footer snippet-controls">
         {/* pin/unpin button */}
-        <SnippetPinButton
-          snippet={snippet}
-          onPinClick={onPinClick}
-        />
+        {(!snippet.archived && !hidePinButton) &&
+          <SnippetPinButton
+            snippet={snippet}
+            onPinClick={onPinClick}
+          />
+        }
 
         {/* star/unstar button */}
         <span
@@ -93,6 +99,7 @@ SnippetListDetail.propTypes = {
   onStarClick: PropTypes.func.isRequired,
   onArchiveClick: PropTypes.func.isRequired,
   onColorClick: PropTypes.func.isRequired,
+  hidePinButton: PropTypes.bool,
 };
 
 export default SnippetListDetail;
