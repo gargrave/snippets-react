@@ -48,6 +48,7 @@ function getValidSnippet() {
     url: 'https://duckduckgo.com',
     archived: false,
     starred: false,
+    pinned: false,
     color: 'white',
     created: TIMESTAMP,
     modified: TIMESTAMP
@@ -338,6 +339,98 @@ describe('Snippets API', () => {
       let testRecordRef = dbRef.push();
       let testRecordData = getValidSnippet();
       testRecordData.starred = 123;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+  it('should reject data with no "starred" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with malformed 'starred' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      delete testRecordData.starred;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+
+  /*=============================================
+   = 'pinned' tests
+   =============================================*/
+  it('should reject data with no "pinned" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with no 'pinned' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      delete testRecordData.pinned;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+  it('should reject data with an invalid "pinned" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with malformed 'pinned' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      testRecordData.pinned = 123;
+      testRecordRef.update(testRecordData, err => {
+        expect(err).to.not.be.null;
+        if (err) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    });
+  });
+
+  it('should reject data with no "pinned" field', () => {
+    return new Promise((resolve, reject) => {
+      if (!checkDbRef()) {
+        reject();
+      }
+
+      // submit with malformed 'pinned' field
+      logFirebaseWarning();
+      let testRecordRef = dbRef.push();
+      let testRecordData = getValidSnippet();
+      delete testRecordData.pinned;
       testRecordRef.update(testRecordData, err => {
         expect(err).to.not.be.null;
         if (err) {
