@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
 
 import {AUTH_API} from '../../../constants/env';
-import * as actions from '../../profile/profileActions';
+import actions from '../../profile/profileActions';
 import goto from '../../../utils/goto';
 import UserInfo from '../components/UserInfo';
 import ProfileForm from '../components/ProfileForm';
