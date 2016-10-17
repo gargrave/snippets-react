@@ -44,7 +44,7 @@ class Navbar extends React.Component {
     const {user} = this.props;
 
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top">
+      <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
 
           <div className="navbar-header">
