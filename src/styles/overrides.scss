@@ -1,6 +1,10 @@
-$navMenuWidth: 230px;
-$navMenuLeftPad1: 16px;
+@import 'variables';
+
+$navMenuWidth: 200px;
+$navMenuLeftPad1: 21px;
 $navMenuLeftPad2: $navMenuLeftPad1 + 10;
+$navLinkPaddingOnDesktop: 6px;
+$navLinkPaddingOnMobile: 10px;
 
 .panel {
   border: 0;
@@ -23,7 +27,12 @@ $navMenuLeftPad2: $navMenuLeftPad1 + 10;
   margin-top: 52px;
 }
 
-.navmenu-nav > li > h4 {
+.navmenu-default {
+  border-color: $bgColor;
+}
+
+.nav-header {
+  font-weight: bold;
   position: relative;
   display: block;
   padding: 3px $navMenuLeftPad1;
@@ -31,6 +40,26 @@ $navMenuLeftPad2: $navMenuLeftPad1 + 10;
   margin-bottom: 3px;
 }
 
-.navmenu-nav > li a {
-  padding: 8px $navMenuLeftPad2;
+// active link in side navbar
+.navmenu-default .navmenu-nav > .active > a,
+.navmenu-default .navmenu-nav > .active > a:active,
+.navmenu-default .navmenu-nav > .active > a:focus,
+.navmenu-default .navmenu-nav > .active > a:hover {
+  color: #744;
+  background-color: $bgColor;
+  font-weight: bold;
+}
+
+// less-than-tablet resolutions
+@media (max-width: 768px) {
+  .navmenu-nav > li a {
+    padding: $navLinkPaddingOnMobile $navMenuLeftPad2;
+  }
+}
+
+// tablet+ resolution
+@media (min-width: 769px) {
+  .navmenu-nav > li a {
+    padding: $navLinkPaddingOnDesktop $navMenuLeftPad2;
+  }
 }

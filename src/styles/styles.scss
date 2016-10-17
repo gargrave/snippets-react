@@ -1,9 +1,10 @@
+@import 'variables';
 @import 'overrides';
 @import 'snippets';
 
 body {
   padding-top: 70px;
-  background: #e8e8e8;
+  background-color: #f8f8f8;
 }
 
 .pointer {
@@ -20,11 +21,12 @@ body {
 }
 
 // increase font size for forms on small devices
-input[type="text"], input[type="number"], input[type="password"], textarea, select, select.form-control {
+input[type="text"], input[type="number"], input[type="password"],
+textarea, select, select.form-control {
   font-size: 16px;
 }
 
-// Tablet upwards
+// tablet+ resolution
 @media (min-width: 768px) {
   body {
     padding-left: $navMenuWidth;
