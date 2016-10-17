@@ -61,7 +61,7 @@ class AuthApiMock {
         });
 
         if (user) {
-          reject({ message: 'A user with this email already exists.' });
+          reject({message: 'A user with this email already exists.'});
         } else {
           let newUser = {
             uid: (userId++).toString(),
@@ -100,7 +100,7 @@ class AuthApiMock {
           this.notifyListeners();
           resolve(user);
         } else {
-          reject({ message: 'No user found with this email address.' });
+          reject({message: 'No user found with this email address.'});
         }
       }, MOCK_API_DELAY);
     });

@@ -139,8 +139,12 @@ export class SnippetsListPage extends React.Component {
         <div className="alert alert-danger">Error: {apiError}</div>
         }
 
+
+        {/* 'add new snippet' button */}
         <NewSnippetPanel onPanelClick={() => this.gotoCreatePage()}/>
 
+
+        {/* show pinned Snippets first */}
         {this.props.pinnedSnippets.map((snippet) =>
           <SnippetListDetail
             key={snippet.id}
@@ -156,6 +160,8 @@ export class SnippetsListPage extends React.Component {
         )}
         {!!this.props.pinnedSnippets.length && <hr className="snippets-hr"/>}
 
+
+        {/* display all non-pinned Snippets*/}
         {this.props.snippets.map((snippet) =>
           <SnippetListDetail
             key={snippet.id}
