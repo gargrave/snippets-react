@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
-import toastr from 'toastr';
 
-import {APP_TITLE} from '../../../constants/appConfig';
 import {AUTH_API} from '../../../constants/env';
 import goto from '../../../utils/goto';
 
@@ -33,21 +31,22 @@ class Navbar extends React.Component {
   onLogoutClick(event) {
     event.preventDefault();
 
-    this.setState({ working: true });
+    this.setState({working: true});
     AUTH_API.signOut()
       .then(() => {
-        this.setState({ working: false });
+        this.setState({working: false});
         goto.route('/account/login');
       });
   }
 
   render() {
     const loggedIn = !!this.props.user.email;
-    const {user, location} = this.props;
+    const {user} = this.props;
 
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top">
         <div className="container-fluid">
+
           <div className="navbar-header">
             <button type="button" className="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
               <span className="icon-bar"></span>
@@ -59,42 +58,43 @@ class Navbar extends React.Component {
             </Link>
           </div>
 
-          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div className="collapse navbar-collapse">
             {/* account/profile dropdown, when user is logged in */}
             {!!loggedIn &&
-              <ul className="nav navbar-nav navbar-right">
-                <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
-                    aria-haspopup="true" aria-expanded="false">{user.email} <span className="caret"></span>
-                  </a>
-                  <ul className="dropdown-menu">
+            <ul className="nav navbar-nav navbar-right">
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                   role="button" aria-haspopup="true" aria-expanded="false">
+                  {user.email} <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu">
 
-                    <li className={this.getActiveClass('/account')}>
-                      <Link to="/account">
-                        <span className="fa fa-user fa-lg"></span>&nbsp; &nbsp;
-                        Profile
-                      </Link>
-                    </li>
+                  <li className={this.getActiveClass('/account')}>
+                    <Link to="/account">
+                      <span className="fa fa-user fa-lg"></span>&nbsp; &nbsp;
+                      Profile
+                    </Link>
+                  </li>
 
-                    <li>
-                      <a href="" onClick={this.onLogoutClick}>
-                        <span className="fa fa-sign-out fa-lg"></span>&nbsp; &nbsp;
-                        Logout
-                      </a>
-                    </li>
+                  <li>
+                    <a href="" onClick={this.onLogoutClick}>
+                      <span className="fa fa-sign-out fa-lg"></span>&nbsp; &nbsp;
+                      Logout
+                    </a>
+                  </li>
 
-                  </ul>
-                </li>
-              </ul>
+                </ul>
+              </li>
+            </ul>
             }
 
             {/* login link, when user is not logged in */}
             {!user.email &&
-              <ul className="nav navbar-nav navbar-right">
-                <li className={this.getActiveClass('/game')}>
-                  <Link to="/account/login">Login</Link>
-                </li>
-              </ul>
+            <ul className="nav navbar-nav navbar-right">
+              <li className={this.getActiveClass('/game')}>
+                <Link to="/account/login">Login</Link>
+              </li>
+            </ul>
             }
 
           </div>
