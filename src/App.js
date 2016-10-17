@@ -1,12 +1,13 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import { Link, IndexLink } from 'react-router';
+import {Link, IndexLink} from 'react-router';
+
+// these two imports need to be called to initialize them; ignore any 'unused' errors
 import firebaseConfig from './etc/firebaseConfig';
 import bootstrap from 'bootstrap';
 
 import FirebaseContainer from './modules/firebase/FirebaseContainer';
 import Navbar from './modules/layout/components/Navbar';
-import SideNav from './modules/layout/components/SideNav';
 import SlideInNavMenu from './modules/layout/components/SlideInNavMenu';
 
 
@@ -44,15 +45,14 @@ App.propTypes = {
   user: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

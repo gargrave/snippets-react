@@ -64,15 +64,15 @@ export class SnippetsListPage extends React.Component {
       fullListView = false;
     }
 
-    return { fullListView };
+    return {fullListView};
   }
 
   submitUpdate(snippet, successToast = true) {
     if (this.props.loggedIn && !this.state.working && snippet) {
-      this.setState({ working: true });
+      this.setState({working: true});
       this.props.actions.update(snippet)
-        .then(res => {
-          this.setState({ working: false });
+        .then(() => {
+          this.setState({working: false});
           if (successToast) {
             toastr.success('Snippet updated', 'Success');
           }
@@ -136,10 +136,10 @@ export class SnippetsListPage extends React.Component {
     return (
       <div>
         {apiError &&
-          <div className="alert alert-danger">Error: {apiError}</div>
+        <div className="alert alert-danger">Error: {apiError}</div>
         }
 
-        <NewSnippetPanel onPanelClick={() => this.gotoCreatePage()} />
+        <NewSnippetPanel onPanelClick={() => this.gotoCreatePage()}/>
 
         {this.props.pinnedSnippets.map((snippet) =>
           <SnippetListDetail
@@ -193,12 +193,12 @@ function mapStateToProps(state, ownProps) {
     case 'archived':
       snippets = state.snippets
         .filter(s => s.archived)
-        .sort((a, b) => a.created > b.created ? -1 : 1 );
+        .sort((a, b) => a.created > b.created ? -1 : 1);
       break;
     case 'starred':
       snippets = state.snippets
         .filter(s => s.starred)
-        .sort((a, b) => a.created > b.created ? -1 : 1 );
+        .sort((a, b) => a.created > b.created ? -1 : 1);
       break;
     default:
       snippets = state.snippets

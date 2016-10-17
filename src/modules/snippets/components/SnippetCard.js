@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
+
 class SnippetCard extends Component {
   render() {
     const {snippet} = this.props;

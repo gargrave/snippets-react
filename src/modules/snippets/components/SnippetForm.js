@@ -6,7 +6,8 @@ import TextInput from '../../common/components/TextInput';
 
 const SnippetForm = ({
   snippet, working, errors, snippetIsDirty,
-  onChange, onSubmit, onCancel}) => {
+  onChange, onSubmit, onCancel
+}) => {
   return (
     <form>
       <TextInput

@@ -65,9 +65,9 @@ class FirebaseContainer extends React.Component {
 }
 
 FirebaseContainer.propTypes = {
-  authActions: PropTypes.object.isRequired,
-  profileActions: PropTypes.object.isRequired,
-  snippetsActions: PropTypes.object.isRequired,
+  authActions: PropTypes.object,
+  profileActions: PropTypes.object,
+  snippetsActions: PropTypes.object,
 };
 
 function mapStateToProps(state, ownProps) {

@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
+
 class NewSnippetPanel extends Component {
   render() {
     return (

@@ -88,9 +88,9 @@ class SlideInNavMenu extends Component {
 }
 
 SlideInNavMenu.propTypes = {
-  user: PropTypes.object.isRequired,
-  collapsed: PropTypes.bool.isRequired,
-  uiActions: PropTypes.object.isRequired,
+  user: PropTypes.object,
+  collapsed: PropTypes.bool,
+  uiActions: PropTypes.object,
   location: PropTypes.object
 };
 

@@ -7,8 +7,6 @@ import snippetData from './snippetData';
 
 
 let snippetId = 10;
-let mockDate = new Date();
-let timestamp = mockDate.getTime();
 
 export let snippets = {
   '0': {

@@ -7,7 +7,7 @@ export default {
    * of the Snippet panel, based on teh Snippet's 'color' property
    *
    * @param {object} snippet - The Snippet instance for the panel
-   * @returns The style string for the top-level element
+   * @returns {string} The style string for the top-level element
    */
   snippetPanel: function(snippet) {
     const colorClass = snippetData.isValidColor(snippet.color) ?

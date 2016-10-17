@@ -13,23 +13,10 @@ const api = USE_MOCK_APIS ? mockSnippetsApi : liveSnippetsApi;
 /*=============================================
  = 'fetch' actions
  =============================================*/
-function fetchSnippetsBegin() {
-  return {
-    type: types.FETCH_SNIPPETS_BEGIN
-  };
-}
-
 function fetchSnippetsSuccess(snippets) {
   return {
     type: types.FETCH_SNIPPETS_SUCCESS,
     snippets
-  };
-}
-
-function fetchSnippetsError(error) {
-  return {
-    type: types.FETCH_SNIPPETS_ERROR,
-    error
   };
 }
 
@@ -141,17 +128,17 @@ export default {
   },
 
   remove(snippet) {
-  return function(dispatch) {
-    dispatch(deleteSnippetBegin());
-    return api.destroyRecord(snippet)
-      .then(res => {
-        dispatch(deleteSnippetSuccess());
-      })
-      .catch(err => {
-        dispatch(deleteSnippetError());
-        throw (err);
-      });
-  };
-}
+    return function(dispatch) {
+      dispatch(deleteSnippetBegin());
+      return api.destroyRecord(snippet)
+        .then(() => {
+          dispatch(deleteSnippetSuccess());
+        })
+        .catch(err => {
+          dispatch(deleteSnippetError());
+          throw (err);
+        });
+    };
+  }
 };
 

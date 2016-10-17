@@ -22,13 +22,13 @@ class SnippetDetailPage extends React.Component {
       'fa fa-refresh fa-lg' : 'fa fa-archive fa-lg';
 
     this.state = {
-      snippet, // working snippet data
-      snippetCopy, // unedited, original snippet (i.e. for dirty-checking)
+      snippet: snippet, // working snippet data
+      snippetCopy: snippetCopy, // unedited, original snippet (i.e. for dirty-checking)
       snippetIsDirty: false, // whether the editing snippet differs from original
       working: false,
       errors: {},
       apiError: '',
-      archiveIconClass
+      archiveIconClass: archiveIconClass
     };
 
     this.onChange = this.onChange.bind(this);
@@ -62,7 +62,7 @@ class SnippetDetailPage extends React.Component {
     let propKey = event.target.name;
     let snippet = this.state.snippet;
     snippet[propKey] = event.target.value;
-    this.setState({ snippet });
+    this.setState({snippet});
     this.checkIfsnippetIsDirty();
   }
 
@@ -71,21 +71,14 @@ class SnippetDetailPage extends React.Component {
     this.submitUpdate();
   }
 
-  onArchiveClick() {
-    let snippet = this.state.snippet;
-    snippet.archived = !snippet.archived;
-    this.setState({ snippet });
-    this.submitUpdate();
-  }
-
   onDeleteClick(event) {
     event.preventDefault();
 
     if (!this.state.working && confirm('Delete this snippet?')) {
-      this.setState({ working: true });
+      this.setState({working: true});
       this.props.actions.remove(this.props.snippet)
         .then(() => {
-          this.setState({ working: false });
+          this.setState({working: false});
           toastr.success('Snippet deleted', 'Success');
           this.gotoListPage();
         }, err => {
@@ -105,10 +98,10 @@ class SnippetDetailPage extends React.Component {
 
   submitUpdate() {
     if (this.isValid()) {
-      this.setState({ working: true });
+      this.setState({working: true});
       this.props.actions.update(this.state.snippet)
-        .then(res => {
-          this.setState({ working: false });
+        .then(() => {
+          this.setState({working: false});
           toastr.success('Snippet updated', 'Success');
           this.gotoListPage();
         }, err => {
@@ -142,7 +135,7 @@ class SnippetDetailPage extends React.Component {
       snippetIsDirty = true;
     }
 
-    this.setState({ snippetIsDirty });
+    this.setState({snippetIsDirty});
   }
 
   isValid() {
@@ -151,7 +144,7 @@ class SnippetDetailPage extends React.Component {
     let errors = {};
 
     // validate title
-    let titleParams = { minLength: 3 };
+    let titleParams = {minLength: 3};
     let titleVal = validate(snippet.title, titleParams);
     if (!titleVal.valid) {
       errors.title = titleVal.error;
@@ -159,14 +152,14 @@ class SnippetDetailPage extends React.Component {
     }
 
     // validate url
-    let urlParams = { required: true, format: 'url' };
+    let urlParams = {required: true, format: 'url'};
     let urlVal = validate(snippet.url, urlParams);
     if (!urlVal.valid) {
       errors.url = urlVal.error;
       valid = false;
     }
 
-    this.setState({ errors });
+    this.setState({errors});
     return valid;
   }
 
@@ -178,7 +171,7 @@ class SnippetDetailPage extends React.Component {
     return (
       <div>
         {apiError &&
-          <div className="alert alert-danger">Error: {apiError}</div>
+        <div className="alert alert-danger">Error: {apiError}</div>
         }
 
         <div className={snippetStyles.snippetPanel(snippet)}>
@@ -197,11 +190,11 @@ class SnippetDetailPage extends React.Component {
               onChange={this.onChange}
               onSubmit={this.onSubmit}
               onCancel={this.onCancel}
-              />
+            />
           </div>
         </div>
 
-        <a href onClick={(e) => this.onDeleteClick(e)}>Delete this Snippet</a>
+        <a href="" onClick={(e) => this.onDeleteClick(e)}>Delete this Snippet</a>
         <br/>
       </div>
     );

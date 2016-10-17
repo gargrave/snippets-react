@@ -55,7 +55,7 @@ function isValidTwitter(value) {
  *        (Note that the function will return as soon as any rule is not met.)
  */
 function validate(_value, rules) {
-  const value =_value ? _value.trim() : '';
+  const value = _value ? _value.trim() : '';
   const isRequired = rules.required;
   const isBlank = !value.length || value === null || value === undefined;
 

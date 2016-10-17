@@ -46,17 +46,17 @@ class SnippetsCreatePage extends React.Component {
     let propKey = event.target.name;
     let snippet = this.state.snippet;
     snippet[propKey] = event.target.value;
-    this.setState({ snippet });
+    this.setState({snippet});
   }
 
   onSubmit(event) {
     event.preventDefault();
 
     if (this.props.loggedIn && this.isValid()) {
-      this.setState({ working: true });
+      this.setState({working: true});
       this.props.actions.create(this.state.snippet)
-        .then(res => {
-          this.setState({ working: false });
+        .then(() => {
+          this.setState({working: false});
           toastr.success('Snippet created', 'Success');
           this.redirectToListPage();
         }, err => {
@@ -83,7 +83,7 @@ class SnippetsCreatePage extends React.Component {
     let errors = {};
 
     // validate title
-    let titleParams = { minLength: 3 };
+    let titleParams = {minLength: 3};
     let titleVal = validate(snippet.title, titleParams);
     if (!titleVal.valid) {
       errors.title = titleVal.error;
@@ -91,14 +91,14 @@ class SnippetsCreatePage extends React.Component {
     }
 
     // validate url
-    let urlParams = { required: true, format: 'url' };
+    let urlParams = {required: true, format: 'url'};
     let urlVal = validate(snippet.url, urlParams);
     if (!urlVal.valid) {
       errors.url = urlVal.error;
       valid = false;
     }
 
-    this.setState({ errors });
+    this.setState({errors});
     return valid;
   }
 
@@ -107,7 +107,7 @@ class SnippetsCreatePage extends React.Component {
     return (
       <span>
         {apiError &&
-          <div className="alert alert-danger">Error: {apiError}</div>
+        <div className="alert alert-danger">Error: {apiError}</div>
         }
         <div className={snippetStyles.snippetCreatePanel()}>
 
@@ -137,7 +137,7 @@ SnippetsCreatePage.propTypes = {
   actions: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     loggedIn: !!state.user.email
   };

@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 
-import snippetData from '../snippetData';
 import snippetStyles from '../helpers/snippetStyles';
 import SnippetArchiveButton from './SnippetArchiveButton';
 import SnippetPinButton from './SnippetPinButton';
@@ -16,7 +15,7 @@ const SnippetListDetail = ({
    * Returns the full class for the star/unstar button, based on the 'starred'
    * state of the supplied Snippet.
    *
-   * @returns The full class for the star/unstar button
+   * @returns {string} The full class for the star/unstar button
    */
   function getStarClass() {
     return snippet.starred ?
@@ -44,23 +43,23 @@ const SnippetListDetail = ({
 
         {/* Snippet URL */}
         {!collapsedView &&
-          <a
-            href={snippet.url}
-            className="text-muted snippet-url"
-            target="_blank"
-            rel="noopener noreferrer">
-            {snippet.url}
-          </a>
+        <a
+          href={snippet.url}
+          className="text-muted snippet-url"
+          target="_blank"
+          rel="noopener noreferrer">
+          {snippet.url}
+        </a>
         }
       </div>
 
       <div className="panel-footer snippet-controls">
         {/* pin/unpin button */}
         {(!snippet.archived && !hidePinButton) &&
-          <SnippetPinButton
-            snippet={snippet}
-            onPinClick={onPinClick}
-          />
+        <SnippetPinButton
+          snippet={snippet}
+          onPinClick={onPinClick}
+        />
         }
 
         {/* star/unstar button */}
@@ -71,7 +70,7 @@ const SnippetListDetail = ({
         </span>
 
         {/* color picker */}
-        <SnippetColorPicker onColorSelect={onColorSelect} />
+        <SnippetColorPicker onColorSelect={onColorSelect}/>
 
         {/* archive/unarchive button */}
         <SnippetArchiveButton
