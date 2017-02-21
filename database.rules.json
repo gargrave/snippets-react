@@ -1,0 +1,49 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "profiles": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid",
+        ".validate": "newData.hasChildren(['name'])",
+        "name": {
+          ".validate": "newData.isString() && (newData.val() === '' || (newData.val().length > 2 && newData.val().length < 100))"
+        }
+      }
+    },
+    "snippets": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid",
+        "$snippet_id": {
+          ".validate": "newData.hasChildren(['title', 'url', 'archived', 'starred', 'pinned', 'color', 'created', 'modified'])",
+          "title": {
+            ".validate": "newData.isString() && (newData.val() === '' || (newData.val().length > 2 && newData.val().length < 100))"
+          },
+          "url": {
+            ".validate": "newData.isString() && newData.val().matches(/^\\S+\\.\\S+$/)"
+          },
+          "archived": {
+            ".validate": "newData.isBoolean()"
+          },
+          "starred": {
+            ".validate": "newData.isBoolean()"
+          },
+          "pinned": {
+            ".validate": "newData.isBoolean()"
+          },
+          "color": {
+            ".validate": "newData.isString() && newData.val().matches(/red|green|blue|yellow|orange|teal|gray|white/)"
+          },
+          "created": {
+            ".validate": "newData.isNumber()"
+          },
+          "modified": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    }
+  }
+}
